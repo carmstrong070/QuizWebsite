@@ -8,10 +8,6 @@
 
         public string QuestionTypeName { get; set; }
 
-        public List<AnswerOption> AnswerOptions { get; set; }
-
-        public string AnswerText { get; set; }
-
     }
 
 }
