@@ -6,13 +6,11 @@
 
         public string QuestionText { get; set; }
 
-        public int QuestionTypeId { get; set; }
-
         public string QuestionTypeName { get; set; }
 
         public List<AnswerOption> AnswerOptions { get; set; }
 
-        public AnswerText AnswerText { get; set; }
+        public string AnswerText { get; set; }
 
     }
 
