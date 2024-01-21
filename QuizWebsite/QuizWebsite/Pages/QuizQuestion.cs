@@ -7,7 +7,5 @@
         public string QuestionText { get; set; }
 
         public string QuestionTypeName { get; set; }
-
     }
-
 }

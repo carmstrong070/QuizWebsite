@@ -9,7 +9,7 @@
 
         public string Author { get; set; }
 
-        public List<QuizQuestion> Questions { get; set; }
+        public List<QuizQuestion> Questions { get; set; } = new List<QuizQuestion>();
 
     }
 }

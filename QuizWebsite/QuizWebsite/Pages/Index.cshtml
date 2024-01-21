@@ -5,17 +5,45 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-4">@Model.LoadedQuiz.Title</h1>
+    <h2>@Model.LoadedQuiz.Author</h2>
 </div>
-@* @foreach (var item in Model.QuestionList)
+
+@foreach (var question in Model.LoadedQuiz.Questions)
 {
-    <div>@item.QuestionText</div>
-    @foreach (var response in item.Responses)
+    <div>@question.QuestionText</div>
+
+    @if (question is SelectQuestion)
     {
-        <div class="form-check">
-            <input type="radio" class="form-check-input" name="@item.QuestionText" value="@response.Key">@response.Value
-            <label class="form-check-label"></label>
+        var selectQuestion = question as SelectQuestion;
+        
+        @foreach (var answerOption in selectQuestion.AnswerOptions)
+        {
+            if (question.QuestionTypeName == "single_select")
+            {
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="@(question.QuestionTypeName + question.QuestionId)" value="@answerOption.Id">
+                    <label class="form-check-label">@answerOption.OptionText</label>
+                </div>
+            }
+            else if (question.QuestionTypeName == "multi_select")
+            {
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="@answerOption.Id">
+                    <label class="form-check-label">
+                        @answerOption.OptionText
+                    </label>
+                </div>
+            }
+        }
+    }
+    else if (question is TextQuestion)
+    {
+        var textQuestion = question as TextQuestion;
+
+        <div class="mb-3">
+            <label class="form-label">Answer</label>
+            <input type="text" class="form-control" placeholder="Answer">
         </div>
     }
-} *@
+}

@@ -2,6 +2,8 @@
 {
     public class SelectQuestion : QuizQuestion
     {
-        public List<AnswerOption> AnswerOptions { get; set; }
+        public List<AnswerOption> AnswerOptions { get; set; } = new List<AnswerOption>();
+
+        
     }
 }

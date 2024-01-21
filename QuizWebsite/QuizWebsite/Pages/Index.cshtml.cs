@@ -8,7 +8,7 @@ namespace QuizWebsite.Pages
     {
         private readonly ILogger<IndexModel> _logger;
 
-        public Quiz LoadedQuiz = null;
+        public Quiz LoadedQuiz { get; set; } = new Quiz();
 
         public IndexModel(ILogger<IndexModel> logger)
         {
@@ -24,16 +24,16 @@ namespace QuizWebsite.Pages
                 {
                     sqlCommand.CommandText = @"
                         SELECT q.title, u.username
-	                        FROM quiz AS q
-		                        INNER JOIN [user] AS u ON q.author_user_id = u.id
-	                        WHERE q.id = @quiz_id;
+                            FROM quiz AS q
+                                INNER JOIN [user] AS u ON q.author_user_id = u.id
+                            WHERE q.id = @quiz_id;
 
                         SELECT que.id, que.question_text, que.question_type_id, qt.name AS question_type_name
                             FROM question AS que
                                 INNER JOIN question_type AS qt ON que.question_type_id = qt.id
                             WHERE quiz_id = @quiz_id;
 
-                        SELECT ao.option_text, ao.is_correct, ao.question_id, qt.name AS question_type_name
+                        SELECT ao.id, ao.option_text, ao.is_correct, ao.question_id, qt.name AS question_type_name
                             FROM answer_option AS ao
                                 INNER JOIN question AS q ON ao.question_id = q.id
                                 INNER JOIN question_type AS qt ON q.question_type_id = qt.id
@@ -49,7 +49,6 @@ namespace QuizWebsite.Pages
 
                     using (var sqlReader = sqlCommand.ExecuteReader())
                     {
-
                         while (sqlReader.Read())
                         {
                             LoadedQuiz.Title = sqlReader[name: "title"].ToString();
@@ -60,21 +59,24 @@ namespace QuizWebsite.Pages
 
                         while (sqlReader.Read())
                         {
-                            var question = new QuizQuestion();
-                            question.QuestionId = (long)sqlReader[name: "id"];
-                            question.QuestionText = sqlReader["question_text"].ToString();
-                            question.QuestionTypeName = sqlReader["question_type_name"].ToString();
+                            string questionTypeName = sqlReader["question_type_name"].ToString();
 
-                            switch (question.QuestionTypeName)
+                            switch (questionTypeName)
                             {
                                 case "single_select":
                                 case "multi_select":
-                                    var selectQuestion = question as SelectQuestion;
+                                    var selectQuestion = new SelectQuestion();
+                                    selectQuestion.QuestionId = (long)sqlReader["id"];
+                                    selectQuestion.QuestionText = sqlReader["question_text"].ToString();
+                                    selectQuestion.QuestionTypeName = sqlReader["question_type_name"].ToString();
                                     LoadedQuiz.Questions.Add(selectQuestion);
                                     break;
                                 case "free_response":
                                 case "fill_in_blank":
-                                    var textQuestion = question as TextQuestion;
+                                    var textQuestion = new TextQuestion();
+                                    textQuestion.QuestionId = (long)sqlReader["id"];
+                                    textQuestion.QuestionText = sqlReader["question_text"].ToString();
+                                    textQuestion.QuestionTypeName = sqlReader["question_type_name"].ToString();
                                     LoadedQuiz.Questions.Add(textQuestion);
                                     break;
                             }
@@ -85,12 +87,12 @@ namespace QuizWebsite.Pages
                         while (sqlReader.Read())
                         {
                             var answerOption = new AnswerOption();
+                            answerOption.Id = (long)sqlReader["id"];
                             answerOption.OptionText = sqlReader[name: "option_text"].ToString();
                             answerOption.IsCorrect = (bool)sqlReader[name: "is_correct"];
                             long associatedQuestionId = (long)sqlReader[name: "question_id"];
 
                             ((SelectQuestion)LoadedQuiz.Questions.FirstOrDefault(x => x.QuestionId == associatedQuestionId)).AnswerOptions.Add(answerOption);
-
                         }
 
                         sqlReader.NextResult();
@@ -99,8 +101,9 @@ namespace QuizWebsite.Pages
                         {
                             long associatedQuestionId = (long)sqlReader[name: "question_id"];
 
-                            ((TextQuestion)LoadedQuiz.Questions.FirstOrDefault(x => x.QuestionId == associatedQuestionId)).AnswerText = sqlReader[name: "answer_text"].ToString();
-
+                            var associatedQuestion = LoadedQuiz.Questions.FirstOrDefault(x => x.QuestionId == associatedQuestionId);
+                            ((TextQuestion)associatedQuestion).AnswerText = sqlReader["answer_text"].ToString();
+                            //((TextQuestion)quiz.Questions.FirstOrDefault(x => x.QuestionId == associatedQuestionId)).AnswerText = sqlReader["answer_text"].ToString();
                         }
                     }
                 }
