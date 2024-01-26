@@ -4,6 +4,5 @@
     {
         public List<AnswerOption> AnswerOptions { get; set; } = new List<AnswerOption>();
 
-        
     }
 }

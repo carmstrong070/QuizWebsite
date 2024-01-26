@@ -9,41 +9,53 @@
     <h2>@Model.LoadedQuiz.Author</h2>
 </div>
 
-@foreach (var question in Model.LoadedQuiz.Questions)
-{
-    <div>@question.QuestionText</div>
+<form method="POST" >
 
-    @if (question is SelectQuestion)
+    @for (int questionIndex = 0; questionIndex < Model.LoadedQuiz.Questions.Count; questionIndex++)
     {
-        var selectQuestion = question as SelectQuestion;
-        
-        @foreach (var answerOption in selectQuestion.AnswerOptions)
+        var question = Model.LoadedQuiz.Questions[questionIndex];
+        @Html.HiddenFor(m => m.LoadedQuiz.Questions[questionIndex].QuestionId)
+
+        <div>@question.QuestionText</div>
+
+        @if (question is SelectQuestion)
         {
-            if (question.QuestionTypeName == "single_select")
+            var selectQuestion = question as SelectQuestion;
+
+            @for (int optionIndex = 0; optionIndex < selectQuestion.AnswerOptions.Count; optionIndex++)
             {
-                <div class="form-check">
-                    <input type="radio" class="form-check-input" name="@(question.QuestionTypeName + question.QuestionId)" value="@answerOption.Id">
-                    <label class="form-check-label">@answerOption.OptionText</label>
-                </div>
-            }
-            else if (question.QuestionTypeName == "multi_select")
-            {
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="@answerOption.Id">
-                    <label class="form-check-label">
-                        @answerOption.OptionText
-                    </label>
-                </div>
+                var answerOption = selectQuestion.AnswerOptions[optionIndex];
+                @Html.Hidden($"LoadedQuiz.Questions[{questionIndex}].AnswerOptions[{optionIndex}].Id")
+
+                if (question.QuestionTypeName == "single_select")
+                {
+                    <div class="form-check">
+                        @Html.RadioButton($"LoadedQuiz.Questions[{questionIndex}].AnswerOptions[{optionIndex}].IsChecked", new { @class = "form-check-input", @value = answerOption.Id })
+                        <label class="form-check-label">@answerOption.OptionText</label>
+                    </div>
+                }
+                else if (question.QuestionTypeName == "multi_select")
+                {
+                    <div class="form-check">
+                        @Html.CheckBox($"LoadedQuiz.Questions[{questionIndex}].AnswerOptions[{optionIndex}].IsChecked", new {@class = "form-check-input", @value = answerOption.Id})
+                        <label class="form-check-label">
+                            @answerOption.OptionText
+                        </label>
+                    </div>
+                }
             }
         }
-    }
-    else if (question is TextQuestion)
-    {
-        var textQuestion = question as TextQuestion;
+        else if (question is TextQuestion)
+        {
+            var textQuestion = question as TextQuestion;
 
-        <div class="mb-3">
-            <label class="form-label">Answer</label>
-            <input type="text" class="form-control" placeholder="Answer">
-        </div>
+            <div class="mb-3">
+                <label class="form-label">Answer</label>
+                @Html.TextBoxFor(m => m.LoadedQuiz.Questions[questionIndex].QuestionResponse, new {@class = "form-control", @placeholder="Answer"})
+            </div>
     }
 }
+
+<button type="submit" class="btn btn-primary">Submit</button>
+
+</form>

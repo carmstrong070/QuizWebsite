@@ -8,6 +8,7 @@ namespace QuizWebsite.Pages
     {
         private readonly ILogger<IndexModel> _logger;
 
+        [BindProperty]
         public Quiz LoadedQuiz { get; set; } = new Quiz();
 
         public IndexModel(ILogger<IndexModel> logger)
@@ -108,6 +109,11 @@ namespace QuizWebsite.Pages
                     }
                 }
             }
+        }
+
+        public async Task <IActionResult> OnPostAsync()
+        {
+            return RedirectToPage("./Index");
         }
     }
 }

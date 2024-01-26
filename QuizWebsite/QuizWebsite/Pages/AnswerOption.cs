@@ -8,5 +8,7 @@
 
         public bool IsCorrect { get; set; }
 
+        public bool IsChecked { get; set; }
+
     }
 }
