@@ -18,7 +18,12 @@ namespace QuizWebsite.Pages
 
         public void OnGet()
         {
-            using (var sqlConnection = new SqlConnection("data source=BLD\\SQLEXPRESS;initial catalog=QuizWebsite;persist security info=False;connect timeout=1000;integrated security=SSPI;encrypt=False"))
+#if JAHREL
+            string connectionString = "data source=JAHREL-PC\\SQLEXPRESS;initial catalog=QuizWebsite;persist security info=False;connect timeout=1000;integrated security=SSPI;encrypt=False";
+#else
+            string connectionString = "data source=BLD\\SQLEXPRESS;initial catalog=QuizWebsite;persist security info=False;connect timeout=1000;integrated security=SSPI;encrypt=False";
+#endif
+            using (var sqlConnection = new SqlConnection(connectionString))
             {
                 sqlConnection.Open();
                 using (var sqlCommand = sqlConnection.CreateCommand())
