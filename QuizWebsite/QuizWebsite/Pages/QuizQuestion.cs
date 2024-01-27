@@ -1,4 +1,6 @@
-﻿namespace QuizWebsite.Pages
+﻿using Microsoft.AspNetCore.Mvc;
+
+namespace QuizWebsite.Pages
 {
     public class QuizQuestion
     {
@@ -10,6 +12,5 @@
         public string QuestionTypeName { get; set; }
 
         public string QuestionResponse { get; set; }
-
     }
 }

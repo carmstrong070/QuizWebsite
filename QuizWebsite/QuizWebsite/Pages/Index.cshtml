@@ -15,6 +15,7 @@
     {
         var question = Model.LoadedQuiz.Questions[questionIndex];
         @Html.HiddenFor(m => m.LoadedQuiz.Questions[questionIndex].QuestionId)
+        @Html.HiddenFor(m => m.LoadedQuiz.Questions[questionIndex].QuestionTypeName)
 
         <div>@question.QuestionText</div>
 
@@ -30,14 +31,14 @@
                 if (question.QuestionTypeName == "single_select")
                 {
                     <div class="form-check">
-                        @Html.RadioButton($"LoadedQuiz.Questions[{questionIndex}].AnswerOptions[{optionIndex}].IsChecked", new { @class = "form-check-input", @value = answerOption.Id })
+                        @Html.RadioButton($"LoadedQuiz.Questions[{questionIndex}].QuestionResponse", answerOption.Id, new { @class = "form-check-input", @value = answerOption.Id })
                         <label class="form-check-label">@answerOption.OptionText</label>
                     </div>
                 }
                 else if (question.QuestionTypeName == "multi_select")
                 {
                     <div class="form-check">
-                        @Html.CheckBox($"LoadedQuiz.Questions[{questionIndex}].AnswerOptions[{optionIndex}].IsChecked", new {@class = "form-check-input", @value = answerOption.Id})
+                        @Html.CheckBox($"LoadedQuiz.Questions[{questionIndex}].AnswerOptions[{optionIndex}].ResponseValue", new { @class = "form-check-input", @value = true })
                         <label class="form-check-label">
                             @answerOption.OptionText
                         </label>
@@ -51,11 +52,11 @@
 
             <div class="mb-3">
                 <label class="form-label">Answer</label>
-                @Html.TextBoxFor(m => m.LoadedQuiz.Questions[questionIndex].QuestionResponse, new {@class = "form-control", @placeholder="Answer"})
+                @Html.TextBoxFor(m => m.LoadedQuiz.Questions[questionIndex].QuestionResponse, new { @class = "form-control", @placeholder = "Answer" })
             </div>
+        }
     }
-}
 
-<button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" class="btn btn-primary">Submit</button>
 
 </form>

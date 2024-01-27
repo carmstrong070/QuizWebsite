@@ -1,4 +1,6 @@
-﻿namespace QuizWebsite.Pages
+﻿using Microsoft.AspNetCore.Mvc;
+
+namespace QuizWebsite.Pages
 {
     public class AnswerOption
     {
@@ -8,7 +10,8 @@
 
         public bool IsCorrect { get; set; }
 
-        public bool IsChecked { get; set; }
+        public string ResponseValue { get; set; } //TODO: This is some jank. Can probably refactor to be better. - JB
 
+        public bool IsChecked { get { return bool.Parse(ResponseValue); } } //TODO: Related to the jank above. - JB
     }
 }

@@ -116,7 +116,7 @@ namespace QuizWebsite.Pages
             }
         }
 
-        public async Task <IActionResult> OnPostAsync()
+        public IActionResult OnPost()
         {
             return RedirectToPage("./Index");
         }
