@@ -1,8 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
-
-namespace QuizWebsite.Pages
+﻿namespace QuizWebsite.Core.Models.Base
 {
-    public class QuizQuestion
+    public abstract class QuizQuestion
     {
 
         public long QuestionId { get; set; }
@@ -11,6 +9,5 @@ namespace QuizWebsite.Pages
 
         public string QuestionTypeName { get; set; }
 
-        public string QuestionResponse { get; set; }
     }
 }

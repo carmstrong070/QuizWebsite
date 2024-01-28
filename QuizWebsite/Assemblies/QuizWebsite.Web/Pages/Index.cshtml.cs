@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Data.SqlClient;
+using QuizWebsite.Core.Models;
 
 namespace QuizWebsite.Pages
 {
@@ -8,8 +9,10 @@ namespace QuizWebsite.Pages
     {
         private readonly ILogger<IndexModel> _logger;
 
-        [BindProperty]
         public Quiz LoadedQuiz { get; set; } = new Quiz();
+
+        [BindProperty]
+        public List<QuizAnswersViewModel> QuizAnswers { get; set; }
 
         public IndexModel(ILogger<IndexModel> logger)
         {
