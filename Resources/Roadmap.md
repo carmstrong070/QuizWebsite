@@ -20,9 +20,10 @@
 ### Section 2 - User Interactions
 
 - [x] 2.1 Submitting webpage
-- [ ] 2.2 Bind submitted values to C# models
-- [ ] 2.3 Calculating quiz score in webpage codebehind
-- [ ] 2.4 Displaying quiz score on webpage
+- [x] 2.2 Bind submitted values to C# models
+- [x] 2.3 Refactor!
+- [ ] 2.4 Calculating quiz score in webpage codebehind
+- [ ] 2.5 Displaying quiz score on webpage
 
 ### Section 3 - Site Navigation
 
