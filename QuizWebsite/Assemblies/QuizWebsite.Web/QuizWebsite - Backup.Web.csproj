@@ -13,7 +13,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\QuizWebsite.Core.Models\QuizWebsite.Core.Models.csproj" />
-    <ProjectReference Include="..\QuizWebsite.Data\QuizWebsite.Data.csproj" />
   </ItemGroup>
 
 </Project>

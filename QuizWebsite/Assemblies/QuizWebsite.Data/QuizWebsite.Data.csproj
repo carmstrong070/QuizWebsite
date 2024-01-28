@@ -1,10 +1,9 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
-    <Nullable>disable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <Configurations>Debug;Release;Jahrel</Configurations>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>
@@ -13,7 +12,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\QuizWebsite.Core.Models\QuizWebsite.Core.Models.csproj" />
-    <ProjectReference Include="..\QuizWebsite.Data\QuizWebsite.Data.csproj" />
   </ItemGroup>
 
 </Project>
