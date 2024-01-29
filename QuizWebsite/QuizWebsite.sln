@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuizWebsite.Core.Models", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuizWebsite.Data", "Assemblies\QuizWebsite.Data\QuizWebsite.Data.csproj", "{F7D86957-AB43-494D-9E59-A34D7F4A1A00}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuizWebsite.Web.Test", "Assemblies\QuizWebsite.Web.Test\QuizWebsite.Web.Test.csproj", "{77F1772F-3EA2-4FB5-97B1-CCD93ADB851D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -34,6 +36,12 @@ Global
 		{F7D86957-AB43-494D-9E59-A34D7F4A1A00}.Jahrel|Any CPU.Build.0 = Jahrel|Any CPU
 		{F7D86957-AB43-494D-9E59-A34D7F4A1A00}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F7D86957-AB43-494D-9E59-A34D7F4A1A00}.Release|Any CPU.Build.0 = Release|Any CPU
+		{77F1772F-3EA2-4FB5-97B1-CCD93ADB851D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77F1772F-3EA2-4FB5-97B1-CCD93ADB851D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{77F1772F-3EA2-4FB5-97B1-CCD93ADB851D}.Jahrel|Any CPU.ActiveCfg = Debug|Any CPU
+		{77F1772F-3EA2-4FB5-97B1-CCD93ADB851D}.Jahrel|Any CPU.Build.0 = Debug|Any CPU
+		{77F1772F-3EA2-4FB5-97B1-CCD93ADB851D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77F1772F-3EA2-4FB5-97B1-CCD93ADB851D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
