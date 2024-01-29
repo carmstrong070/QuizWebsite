@@ -2,7 +2,6 @@ using System;
 using Bogus;
 using QuizWebsite.Core.Models;
 using QuizWebsite.Pages;
-using QuizWebsite.Web.Pages;
 
 namespace QuizWebsite.Web.Test
 {
@@ -25,7 +24,7 @@ namespace QuizWebsite.Web.Test
             int testsToRun = 500000;
             int questionsInQuiz = 50;
             int targetQuizCorrectnessInGeneratedAnswers = 50;
-            SolvingAlgorithm solvingAlgo = null; //-- Put your algo here!
+            SolvingAlgorithm solvingAlgo = QuizScore.GetNumberCorrect; //-- Put your algo here!
 
             Console.WriteLine($"Test Parameters:");
             Console.WriteLine($"\tTests to run: {testsToRun}");

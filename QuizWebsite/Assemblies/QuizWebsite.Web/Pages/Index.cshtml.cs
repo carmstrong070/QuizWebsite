@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Data.SqlClient;
 using QuizWebsite.Core.Models;
+using QuizWebsite.Web;
 
 namespace QuizWebsite.Pages
 {
@@ -26,6 +27,8 @@ namespace QuizWebsite.Pages
 
         public IActionResult OnPost()
         {
+            LoadedQuiz = Data.QuizGet.GetQuiz();
+            var scoringResult = QuizScore.GetNumberCorrect(LoadedQuiz, QuizAnswers);
             return RedirectToPage("./Index");
         }
     }
