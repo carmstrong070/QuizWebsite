@@ -2,6 +2,7 @@ using System;
 using Bogus;
 using QuizWebsite.Core.Models;
 using QuizWebsite.Pages;
+using QuizWebsite.Web.Pages;
 
 namespace QuizWebsite.Web.Test
 {

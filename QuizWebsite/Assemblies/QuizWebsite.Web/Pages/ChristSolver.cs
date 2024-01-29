@@ -22,10 +22,6 @@ namespace QuizWebsite.Web.Pages
                             ret.CorrectCount++;
                         break;
                     case "single_select":
-                        var singleQ = q as SelectQuestion;
-                        if (answer != null && answer.Answers.Any(x => singleQ.AnswerOptions.Where(x => x.IsCorrect).Select(y => y.Id.ToString()).Contains(x)))
-                            ret.CorrectCount++;
-                        break;
                     case "multi_select":
                         var multiQ = q as SelectQuestion;
                         answer.Answers.RemoveAll(x => x == "false");
@@ -56,10 +52,6 @@ namespace QuizWebsite.Web.Pages
                             ret.CorrectCount++;
                         break;
                     case "single_select":
-                        var singleQ = question as SelectQuestion;
-                        if (a.Answers.Any(x => singleQ.AnswerOptions.Where(x => x.IsCorrect).Select(y => y.Id.ToString()).Contains(x)))
-                            ret.CorrectCount++;
-                        break;
                     case "multi_select":
                         var multiQ = question as SelectQuestion;
                         a.Answers.RemoveAll(x => x == "false");
