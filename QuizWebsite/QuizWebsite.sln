@@ -5,9 +5,9 @@ VisualStudioVersion = 17.8.34511.84
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuizWebsite.Web", "Assemblies\QuizWebsite.Web\QuizWebsite.Web.csproj", "{92547D68-E8BB-46D0-A269-DB264AE1E6BF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuizWebsite.Core.Models", "Assemblies\QuizWebsite.Core.Models\QuizWebsite.Core.Models.csproj", "{13D9E989-9A34-4BF4-9678-CF8487ACAB2E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuizWebsite.Core.Models", "Assemblies\QuizWebsite.Core.Models\QuizWebsite.Core.Models.csproj", "{13D9E989-9A34-4BF4-9678-CF8487ACAB2E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuizWebsite.Data", "Assemblies\QuizWebsite.Data\QuizWebsite.Data.csproj", "{F7D86957-AB43-494D-9E59-A34D7F4A1A00}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuizWebsite.Data", "Assemblies\QuizWebsite.Data\QuizWebsite.Data.csproj", "{F7D86957-AB43-494D-9E59-A34D7F4A1A00}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -30,8 +30,8 @@ Global
 		{13D9E989-9A34-4BF4-9678-CF8487ACAB2E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F7D86957-AB43-494D-9E59-A34D7F4A1A00}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F7D86957-AB43-494D-9E59-A34D7F4A1A00}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F7D86957-AB43-494D-9E59-A34D7F4A1A00}.Jahrel|Any CPU.ActiveCfg = Debug|Any CPU
-		{F7D86957-AB43-494D-9E59-A34D7F4A1A00}.Jahrel|Any CPU.Build.0 = Debug|Any CPU
+		{F7D86957-AB43-494D-9E59-A34D7F4A1A00}.Jahrel|Any CPU.ActiveCfg = Jahrel|Any CPU
+		{F7D86957-AB43-494D-9E59-A34D7F4A1A00}.Jahrel|Any CPU.Build.0 = Jahrel|Any CPU
 		{F7D86957-AB43-494D-9E59-A34D7F4A1A00}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F7D86957-AB43-494D-9E59-A34D7F4A1A00}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
