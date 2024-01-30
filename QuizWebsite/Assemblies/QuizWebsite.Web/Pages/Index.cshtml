@@ -3,6 +3,16 @@
 @{
     ViewData["Title"] = "Home page";
 }
+@section scripts
+{
+    <script>
+        $(function () {
+            if ($(".modal").length > 0) { 
+                $(".modal").modal("show");
+            }
+        });
+    </script>
+}
 
 <div class="text-center">
     <h1 class="display-4">@Model.LoadedQuiz.Title</h1>
@@ -59,3 +69,49 @@
     <button type="submit" class="btn btn-primary">Submit</button>
 
 </form>
+
+@if (Model.IsSubmitted)
+{
+    var percentCorrect = (double) Model.CountCorrect / Model.LoadedQuiz.Questions.Count();
+    string modalTitle = "";
+
+    if (percentCorrect == 1)
+    {
+        modalTitle = "Perfect!";
+    }
+    else if (percentCorrect >= 0.75)
+    {
+        modalTitle = "Hey, that's passable!";
+    }
+    else if (percentCorrect >= 0.5)
+    {
+        modalTitle = "That's pretty bad!";
+    }
+    else if (percentCorrect >= 0.25)
+    {
+        modalTitle = "Wow, you fucking suck!";
+    }
+    else
+    {
+        modalTitle = "Do you have a fucking dent in your head?";
+    }
+
+    <div class="modal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">@(modalTitle)</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>You scored a @(Model.CountCorrect) out of @(Model.LoadedQuiz.Questions.Count()), that's @(percentCorrect * 100)%</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}

@@ -15,6 +15,10 @@ namespace QuizWebsite.Pages
         [BindProperty]
         public List<QuizAnswersViewModel> QuizAnswers { get; set; }
 
+        public bool IsSubmitted { get; set; } = false;
+
+        public int CountCorrect { get; set; }
+
         public IndexModel(ILogger<IndexModel> logger)
         {
             _logger = logger;
@@ -23,12 +27,18 @@ namespace QuizWebsite.Pages
         public void OnGet() 
         {
             LoadedQuiz = Data.QuizGet.GetQuiz();
+            if (TempData.ContainsKey("Posted Score"))
+            {
+                IsSubmitted = true;
+                CountCorrect = (int) TempData["Posted Score"];
+            }
         }
 
         public IActionResult OnPost()
         {
             LoadedQuiz = Data.QuizGet.GetQuiz();
             var scoringResult = QuizScore.GetNumberCorrect(LoadedQuiz, QuizAnswers);
+            TempData.Add("Posted Score", scoringResult.CorrectCount);
             return RedirectToPage("./Index");
         }
     }
