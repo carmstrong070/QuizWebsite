@@ -25,14 +25,20 @@ namespace QuizWebsite.Web.Test
             int testsToRun = 500000;
             int questionsInQuiz = 50;
             int targetQuizCorrectnessInGeneratedAnswers = 50;
-            SolvingAlgorithm solvingAlgo = QuizScore.GetNumberCorrect; //-- Put your algo here!
+            var solvingAlgos = new List<SolvingAlgorithm>()
+            {
+                QuizScore.GetNumberCorrect,
+                SolverBoiOne.Solve,
+                SolverBoiTwo.Solve,
+                ChristSolver.ChristAlgo,
+                ChristSolver.ChristsAlexAlgo,
+                //QuizScore.GetNumberCorrect,
+            };
 
             Console.WriteLine($"Test Parameters:");
             Console.WriteLine($"\tTests to run: {testsToRun}");
             Console.WriteLine($"\tQuestions in quiz: {questionsInQuiz}");
             Console.WriteLine($"\tTarget quiz correctness in generated answers: {targetQuizCorrectnessInGeneratedAnswers}%");
-            Console.WriteLine($"\tAlgorithm: {solvingAlgo.Method.DeclaringType.Name}.{solvingAlgo.Method.Name}()");
-            Console.WriteLine(string.Empty);
 
             var stopwatch = new System.Diagnostics.Stopwatch();
             stopwatch.Start();
@@ -55,25 +61,37 @@ namespace QuizWebsite.Web.Test
             }
 
             stopwatch.Stop();
-            Console.WriteLine($"Time to generate scenarios: {stopwatch.Elapsed.ToString("mm\\:ss\\.fffff")}");
-            stopwatch.Reset();
+            Console.WriteLine($"\tTime to generate scenarios: {stopwatch.Elapsed.ToString("mm\\:ss\\.fffff")}");
+            Console.WriteLine("---------------------------------------------------------------------");
 
-            stopwatch.Start();
+            foreach (var algo in solvingAlgos)
+            {
+                stopwatch.Reset();
+                stopwatch.Start();
 
+                int countOfCorrectQuizes = RunThaAlgo(algo, quiz, answerSets);
+
+                stopwatch.Stop();
+
+                Console.WriteLine($"Algorithm: {algo.Method.DeclaringType.Name}.{algo.Method.Name}()");
+                Console.WriteLine($"\tCorrect quizzes: {countOfCorrectQuizes.ToString()} / {testsToRun} ({((double)countOfCorrectQuizes / testsToRun * 100).ToString("0.00")}%)");
+                Console.WriteLine($"\tTotal solve time: {stopwatch.Elapsed.ToString("mm\\:ss\\.fffff")}");
+                var averageTime = new TimeSpan(stopwatch.ElapsedTicks / testsToRun);
+                Console.WriteLine($"\tAverage time per quiz solve: {averageTime.ToString("mm\\:ss\\.fffff")}");
+                Console.WriteLine(string.Empty);
+            }            
+        }
+
+        private static int RunThaAlgo(SolvingAlgorithm algo, Quiz quiz, List<List<QuizAnswersViewModel>> answerSets)
+        {
             int countOfCorrectQuizes = 0;
             foreach (var answerSet in answerSets)
             {
-                var score = solvingAlgo(quiz, answerSet);
+                var score = algo(quiz, answerSet);
                 if (score.CorrectCount == score.TotalCount)
                     countOfCorrectQuizes++;
             }
-
-            stopwatch.Stop();
-
-            Console.WriteLine($"Correct quizzes: {countOfCorrectQuizes.ToString()} / {testsToRun} ({((double)countOfCorrectQuizes / testsToRun * 100).ToString("0.00")}%)");
-            Console.WriteLine($"Total solve time: {stopwatch.Elapsed.ToString("mm\\:ss\\.fffff")}");
-            var averageTime = new TimeSpan(stopwatch.ElapsedTicks / testsToRun);
-            Console.WriteLine($"Average time per quiz solve: {averageTime.ToString("mm\\:ss\\.fffff")}");
+            return countOfCorrectQuizes;
         }
     }
 }
