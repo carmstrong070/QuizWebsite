@@ -28,10 +28,10 @@
 
 ### Section 3 - Site Navigation
 
-- [ ] 3.1 SQL query for all quizzes
-- [ ] 3.2 Render quiz on quiz listing webpage
-- [ ] 3.3 Wire up navigation to quiz webpage with URL query string
-- [ ] 3.4 Wire up navigation to quiz listing webpage
+- [x] 3.1 SQL query for all quizzes
+- [x] 3.2 Render quiz on quiz listing webpage
+- [x] 3.3 Wire up navigation to quiz webpage with URL query string
+- [x] 3.4 Wire up navigation to quiz listing webpage
 
 ## Future Sections
 
