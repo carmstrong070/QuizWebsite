@@ -23,7 +23,8 @@
 - [x] 2.2 Bind submitted values to C# models
 - [x] 2.3 Refactor!
 - [x] 2.4 Calculating quiz score in webpage codebehind
-- [ ] 2.5 Displaying quiz score on webpage
+- [x] 2.5 Refactor to MVC!
+- [x] 2.6 Displaying quiz score on webpage
 
 ### Section 3 - Site Navigation
 
