@@ -1,13 +1,13 @@
-﻿@page
-@model IndexModel
+﻿@model IndexModel
 @{
-    ViewData["Title"] = "Home page";
+    ViewData["Title"] = "Home Page";
 }
+
 @section scripts
 {
     <script>
         $(function () {
-            if ($(".modal").length > 0) { 
+            if ($(".modal").length > 0) {
                 $(".modal").modal("show");
             }
         });
@@ -19,13 +19,13 @@
     <h2>@Model.LoadedQuiz.Author</h2>
 </div>
 
-<form method="POST" >
+<form method="POST">
 
     @for (int questionIndex = 0; questionIndex < Model.LoadedQuiz.Questions.Count; questionIndex++)
     {
         var question = Model.LoadedQuiz.Questions[questionIndex];
         @Html.Hidden($"QuizAnswers[{questionIndex}].QuestionId", question.QuestionId)
-        
+
 
         <div>@question.QuestionText</div>
 
@@ -47,7 +47,8 @@
                 else if (question.QuestionTypeName == "multi_select")
                 {
                     <div class="form-check">
-                        @Html.CheckBox($"QuizAnswers[{questionIndex}].Answers", new { @class = "form-check-input", @value = answerOption.Id })
+                        @Html.CheckBox($"QuizAnswers[{questionIndex}].Answers", false ,new { @class = "form-check-input", @value = answerOption.Id })
+                        @* <input type= "checkbox" class= "form-check-input" name= "@($"QuizAnswers[{questionIndex}].Answers")" value= "@($"answerOption.Id")" /> *@
                         <label class="form-check-label">
                             @answerOption.OptionText
                         </label>
@@ -61,7 +62,7 @@
 
             <div class="mb-3">
                 <label class="form-label">Answer</label>
-                @Html.TextBox($"QuizAnswers[{questionIndex}].Answers", "" , new { @class = "form-control", @placeholder = "Answer" })
+                @Html.TextBox($"QuizAnswers[{questionIndex}].Answers", "", new { @class = "form-control", @placeholder = "Answer" })
             </div>
         }
     }
@@ -72,7 +73,7 @@
 
 @if (Model.IsSubmitted)
 {
-    var percentCorrect = (double) Model.CountCorrect / Model.LoadedQuiz.Questions.Count();
+    var percentCorrect = (double)Model.CountCorrect / Model.LoadedQuiz.Questions.Count();
     string modalTitle = "";
 
     if (percentCorrect == 1)

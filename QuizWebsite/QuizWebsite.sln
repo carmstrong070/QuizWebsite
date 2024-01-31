@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34511.84
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuizWebsite.Web", "Assemblies\QuizWebsite.Web\QuizWebsite.Web.csproj", "{92547D68-E8BB-46D0-A269-DB264AE1E6BF}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuizWebsite.Core.Models", "Assemblies\QuizWebsite.Core.Models\QuizWebsite.Core.Models.csproj", "{13D9E989-9A34-4BF4-9678-CF8487ACAB2E}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuizWebsite.Data", "Assemblies\QuizWebsite.Data\QuizWebsite.Data.csproj", "{F7D86957-AB43-494D-9E59-A34D7F4A1A00}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuizWebsite.Web.Test", "Assemblies\QuizWebsite.Web.Test\QuizWebsite.Web.Test.csproj", "{77F1772F-3EA2-4FB5-97B1-CCD93ADB851D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuizWebsite.Web.Test", "Assemblies\QuizWebsite.Web.Test\QuizWebsite.Web.Test.csproj", "{77F1772F-3EA2-4FB5-97B1-CCD93ADB851D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuizWebsite.Web", "Assemblies\QuizWebsite.Web\QuizWebsite.Web.csproj", "{43075C56-FBAE-492B-A556-DAB7D5931754}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -18,12 +18,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{92547D68-E8BB-46D0-A269-DB264AE1E6BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{92547D68-E8BB-46D0-A269-DB264AE1E6BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{92547D68-E8BB-46D0-A269-DB264AE1E6BF}.Jahrel|Any CPU.ActiveCfg = Jahrel|Any CPU
-		{92547D68-E8BB-46D0-A269-DB264AE1E6BF}.Jahrel|Any CPU.Build.0 = Jahrel|Any CPU
-		{92547D68-E8BB-46D0-A269-DB264AE1E6BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{92547D68-E8BB-46D0-A269-DB264AE1E6BF}.Release|Any CPU.Build.0 = Release|Any CPU
 		{13D9E989-9A34-4BF4-9678-CF8487ACAB2E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{13D9E989-9A34-4BF4-9678-CF8487ACAB2E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{13D9E989-9A34-4BF4-9678-CF8487ACAB2E}.Jahrel|Any CPU.ActiveCfg = Debug|Any CPU
@@ -42,6 +36,12 @@ Global
 		{77F1772F-3EA2-4FB5-97B1-CCD93ADB851D}.Jahrel|Any CPU.Build.0 = Debug|Any CPU
 		{77F1772F-3EA2-4FB5-97B1-CCD93ADB851D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{77F1772F-3EA2-4FB5-97B1-CCD93ADB851D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{43075C56-FBAE-492B-A556-DAB7D5931754}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43075C56-FBAE-492B-A556-DAB7D5931754}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43075C56-FBAE-492B-A556-DAB7D5931754}.Jahrel|Any CPU.ActiveCfg = Debug|Any CPU
+		{43075C56-FBAE-492B-A556-DAB7D5931754}.Jahrel|Any CPU.Build.0 = Debug|Any CPU
+		{43075C56-FBAE-492B-A556-DAB7D5931754}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43075C56-FBAE-492B-A556-DAB7D5931754}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

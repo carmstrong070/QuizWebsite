@@ -4,12 +4,7 @@
     <TargetFramework>net8.0</TargetFramework>
     <Nullable>disable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <Configurations>Debug;Release;Jahrel</Configurations>
   </PropertyGroup>
-
-  <ItemGroup>
-    <PackageReference Include="Microsoft.Data.SqlClient" Version="5.1.4" />
-  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\QuizWebsite.Core.Models\QuizWebsite.Core.Models.csproj" />

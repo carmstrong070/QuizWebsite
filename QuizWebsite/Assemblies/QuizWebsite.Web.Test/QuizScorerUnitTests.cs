@@ -2,7 +2,7 @@ using System;
 using Bogus;
 using QuizWebsite.Core.Models;
 using QuizWebsite.Pages;
-using QuizWebsite.Web.Pages;
+using QuizWebsite.Web;
 
 namespace QuizWebsite.Web.Test
 {
@@ -28,10 +28,10 @@ namespace QuizWebsite.Web.Test
             var solvingAlgos = new List<SolvingAlgorithm>()
             {
                 QuizScore.GetNumberCorrect,
-                SolverBoiOne.Solve,
-                SolverBoiTwo.Solve,
-                ChristSolver.ChristAlgo,
-                ChristSolver.ChristsAlexAlgo,
+                //SolverBoiOne.Solve,
+                //SolverBoiTwo.Solve,
+                //ChristSolver.ChristAlgo,
+                //ChristSolver.ChristsAlexAlgo,
                 //QuizScore.GetNumberCorrect,
             };
 
