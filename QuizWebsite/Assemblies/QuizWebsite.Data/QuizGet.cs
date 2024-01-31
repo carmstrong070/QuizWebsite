@@ -15,7 +15,7 @@ namespace QuizWebsite.Data
 #else
         public static string ConnectionString { get; set; } = "data source=BLD\\SQLEXPRESS;initial catalog=QuizWebsite;persist security info=False;connect timeout=1000;integrated security=SSPI;encrypt=False";
 #endif
-        public static Quiz GetQuiz()
+        public static Quiz GetQuiz(long quizId)
         {
             var quiz = new Quiz();
 
@@ -25,7 +25,7 @@ namespace QuizWebsite.Data
                 using (var sqlCommand = sqlConnection.CreateCommand())
                 {
                     sqlCommand.CommandText = @"
-                        SELECT q.title, u.username
+                        SELECT q.title, q.created_timestamp, u.username
                             FROM quiz AS q
                                 INNER JOIN [user] AS u ON q.author_user_id = u.id
                             WHERE q.id = @quiz_id;
@@ -47,7 +47,7 @@ namespace QuizWebsite.Data
                                 INNER JOIN question_type AS qt ON q.question_type_id = qt.id
                             WHERE q.quiz_id = @quiz_id;
                     ";
-                    sqlCommand.Parameters.AddWithValue(parameterName: "quiz_id", value: 4);
+                    sqlCommand.Parameters.AddWithValue(parameterName: "quiz_id", value: quizId);
 
                     using (var sqlReader = sqlCommand.ExecuteReader())
                     {
@@ -55,6 +55,7 @@ namespace QuizWebsite.Data
                         {
                             quiz.Title = sqlReader[name: "title"].ToString();
                             quiz.Author = sqlReader[name: "username"].ToString();
+                            quiz.CreatedTimestamp = (DateTime)sqlReader[name: "created_timestamp"];
                         }
 
                         sqlReader.NextResult();
@@ -112,6 +113,43 @@ namespace QuizWebsite.Data
             }
 
             return quiz;
+        }
+
+        public static List<Quiz> GetQuizList()
+        {
+            var quizList = new List<Quiz>();
+
+            using (var sqlConnection = new SqlConnection(ConnectionString))
+            {
+                sqlConnection.Open();
+                using (var sqlCommand = sqlConnection.CreateCommand())
+                {
+                    sqlCommand.CommandText = @"
+                        SELECT q.id
+                              ,q.title
+                              ,u.username
+                              ,q.created_timestamp
+                          FROM [quiz] AS q
+	                        INNER JOIN [user] AS u ON q.author_user_id = u.id
+	                        WHERE q.active = 1
+                    ";
+
+                    using (var sqlReader = sqlCommand.ExecuteReader())
+                    {
+                        while (sqlReader.Read()) 
+                        {
+                            var quiz = new Quiz();
+                            quiz.QuizId = (long) sqlReader[name: "id"];
+                            quiz.Title = sqlReader[name: "title"].ToString();
+                            quiz.Author = sqlReader[name: "username"].ToString();
+                            quiz.CreatedTimestamp = (DateTime) sqlReader[name: "created_timestamp"];
+                            quizList.Add(quiz);
+                        }
+                    }
+
+                    return quizList;
+                }
+            }
         }
     }
 }

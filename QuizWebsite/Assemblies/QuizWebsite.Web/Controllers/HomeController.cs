@@ -14,16 +14,18 @@ namespace QuizWebsite.Web.Controllers
             _logger = logger;
         }
         [HttpGet]
-        public IActionResult Index()
+        public IActionResult Index(long quizId)
         {
             var vm = new IndexModel();
-            vm.LoadedQuiz = QuizGet.GetQuiz();
+            // TODO Add logic to determine what quiz id should be passed to .GetQuiz()
+            vm.LoadedQuiz = QuizGet.GetQuiz(quizId);
             return View(vm);
         }
         [HttpPost]
         public IActionResult Index(IndexModel vm)
         {
-            vm.LoadedQuiz = QuizGet.GetQuiz();
+            // TODO Same deal with .GetQuiz() as above
+            vm.LoadedQuiz = QuizGet.GetQuiz(1);
             var scoringResult = QuizScore.GetNumberCorrect(vm.LoadedQuiz, vm.QuizAnswers);
             vm.IsSubmitted = true;
             vm.CountCorrect = scoringResult.CorrectCount;
@@ -31,6 +33,15 @@ namespace QuizWebsite.Web.Controllers
             ModelState.Clear();
             return View(vm);
         }
+        [HttpGet]
+        public IActionResult QuizPortal()
+        {
+            var vm = new QuizPortalViewModel();
+            vm.Quizzes = QuizGet.GetQuizList();
+            return View(vm);
+        }
+
+        
 
         public IActionResult Privacy()
         {
