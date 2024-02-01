@@ -6,7 +6,7 @@ using QuizWebsite.Web;
 
 namespace QuizWebsite.Web.Models
 {
-    public class IndexModel
+    public class QuizViewModel
     {
 
         public Quiz LoadedQuiz { get; set; } = new Quiz();

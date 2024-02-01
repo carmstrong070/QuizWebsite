@@ -1,6 +1,6 @@
 ﻿@model QuizPortalViewModel
 @{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Quizzes";
 }
 
 <div class="text-center mb-5">
@@ -19,7 +19,7 @@
                     Created: @Model.Quizzes[i].CreatedTimestamp
                 </p>
                 <div class="text-center">
-                        <a class="btn btn-primary" href="@Url.Action("Index", "home", new { quizId = Model.Quizzes[i].QuizId})">Take it!</a>
+                        <a class="btn btn-primary" href="@Url.Action("Quiz", "Quiz", new { quizId = Model.Quizzes[i].QuizId})">Take it!</a>
                 </div>
             </div>
         </div>
