@@ -47,7 +47,8 @@
                 else if (question.QuestionTypeName == "multi_select")
                 {
                     <div class="form-check">
-                        @Html.CheckBox($"QuizAnswers[{questionIndex}].Answers", false ,new { @class = "form-check-input", @value = answerOption.Id })
+                        @Html.Hidden($"QuizAnswers[{questionIndex}].CheckedAnswers[{optionIndex}].AnswerOptionId", answerOption.Id)
+                        @Html.CheckBox($"QuizAnswers[{questionIndex}].CheckedAnswers[{optionIndex}].Checked", false, new { @class = "form-check-input" })
                         @* <input type= "checkbox" class= "form-check-input" name= "@($"QuizAnswers[{questionIndex}].Answers")" value= "@($"answerOption.Id")" /> *@
                         <label class="form-check-label">
                             @answerOption.OptionText

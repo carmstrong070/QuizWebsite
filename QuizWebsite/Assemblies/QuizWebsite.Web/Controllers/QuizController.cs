@@ -24,7 +24,7 @@ namespace QuizWebsite.Web.Controllers
             vm.IsSubmitted = true;
             vm.CountCorrect = scoringResult.CorrectCount;
             //vm.QuizAnswers = new List<Pages.QuizAnswersViewModel>();
-            ModelState.Clear();
+            //ModelState.Clear();
             return View(vm);
         }
     }
