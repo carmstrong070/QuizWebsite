@@ -1,10 +1,5 @@
 ﻿using Microsoft.Data.SqlClient;
 using QuizWebsite.Core.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace QuizWebsite.Data
 {
@@ -136,13 +131,13 @@ namespace QuizWebsite.Data
 
                     using (var sqlReader = sqlCommand.ExecuteReader())
                     {
-                        while (sqlReader.Read()) 
+                        while (sqlReader.Read())
                         {
                             var quiz = new Quiz();
-                            quiz.QuizId = (long) sqlReader[name: "id"];
+                            quiz.QuizId = (long)sqlReader[name: "id"];
                             quiz.Title = sqlReader[name: "title"].ToString();
                             quiz.Author = sqlReader[name: "username"].ToString();
-                            quiz.CreatedTimestamp = (DateTime) sqlReader[name: "created_timestamp"];
+                            quiz.CreatedTimestamp = (DateTime)sqlReader[name: "created_timestamp"];
                             quizList.Add(quiz);
                         }
                     }

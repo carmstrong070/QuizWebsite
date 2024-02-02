@@ -1,8 +1,7 @@
-using System;
 using Bogus;
 using QuizWebsite.Core.Models;
 using QuizWebsite.Pages;
-using QuizWebsite.Web;
+using QuizWebsite.Web.Utilities;
 
 namespace QuizWebsite.Web.Test
 {
@@ -79,7 +78,7 @@ namespace QuizWebsite.Web.Test
                 var averageTime = new TimeSpan(stopwatch.ElapsedTicks / testsToRun);
                 Console.WriteLine($"\tAverage time per quiz solve: {averageTime.ToString("mm\\:ss\\.fffff")}");
                 Console.WriteLine(string.Empty);
-            }            
+            }
         }
 
         private static int RunThaAlgo(SolvingAlgorithm algo, Quiz quiz, List<List<QuestionResponseViewModel>> answerSets)

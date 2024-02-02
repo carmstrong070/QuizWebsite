@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using QuizWebsite.Data;
 using QuizWebsite.Web.Models;
+using QuizWebsite.Web.Utilities;
 
 
 namespace QuizWebsite.Web.Controllers

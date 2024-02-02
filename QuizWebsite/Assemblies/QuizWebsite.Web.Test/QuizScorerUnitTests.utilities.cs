@@ -1,6 +1,4 @@
-using Bogus;
 using QuizWebsite.Core.Models;
-using QuizWebsite.Core.Models.Base;
 using QuizWebsite.Pages;
 
 namespace QuizWebsite.Web.Test

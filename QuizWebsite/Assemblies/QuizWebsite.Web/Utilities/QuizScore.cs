@@ -1,7 +1,7 @@
 ﻿using QuizWebsite.Core.Models;
 using QuizWebsite.Pages;
 
-namespace QuizWebsite.Web
+namespace QuizWebsite.Web.Utilities
 {
     public static class QuizScore
     {
@@ -27,12 +27,16 @@ namespace QuizWebsite.Web
                         }
                         break;
                     case "multi_select":
-                        var responseAnswerIds = questionResponseList[i].MultiCheckedResponse.Where(x => x.IsChecked == true).Select((x => x.AnswerOptionId.ToString()));
-                        var multiSelectQuestion = (SelectQuestion)quizQuestion;
-                        var correctAnswerIds = multiSelectQuestion.AnswerOptions.Where(x => x.IsCorrect == true).Select(x => x.Id.ToString());
-                        if (correctAnswerIds.SequenceEqual(responseAnswerIds))
+                        var checkedResponses = questionResponseList[i].MultiCheckedResponse.Where(x => x.IsChecked == true);
+                        if (checkedResponses != null)
                         {
-                            numberCorrect++;
+                            var responseAnswerIds = checkedResponses.Select(x => x.AnswerOptionId.ToString());
+                            var multiSelectQuestion = (SelectQuestion)quizQuestion;
+                            var correctAnswerIds = multiSelectQuestion.AnswerOptions.Where(x => x.IsCorrect == true).Select(x => x.Id.ToString());
+                            if (correctAnswerIds.SequenceEqual(responseAnswerIds))
+                            {
+                                numberCorrect++;
+                            }
                         }
                         break;
                     case "free_response":
