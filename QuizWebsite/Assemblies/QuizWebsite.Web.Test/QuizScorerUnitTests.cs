@@ -17,7 +17,7 @@ namespace QuizWebsite.Web.Test
             FakerInstance = new Faker();
         }
 
-        private delegate (int CorrectCount, int TotalCount) SolvingAlgorithm(Quiz quiz, List<QuizAnswersViewModel> answers);
+        private delegate (int CorrectCount, int TotalCount) SolvingAlgorithm(Quiz quiz, List<QuestionResponseViewModel> answers);
 
         [TestMethod]
         public void TestDatAlgo()
@@ -44,7 +44,7 @@ namespace QuizWebsite.Web.Test
             stopwatch.Start();
 
             var quiz = GenerateQuiz(questionsInQuiz);
-            var answerSets = new List<List<QuizAnswersViewModel>>();
+            var answerSets = new List<List<QuestionResponseViewModel>>();
             while (answerSets.Count < testsToRun)
             {
                 int diceRollForCorrect = FakerInstance.Random.Int(0, 100);
@@ -82,7 +82,7 @@ namespace QuizWebsite.Web.Test
             }            
         }
 
-        private static int RunThaAlgo(SolvingAlgorithm algo, Quiz quiz, List<List<QuizAnswersViewModel>> answerSets)
+        private static int RunThaAlgo(SolvingAlgorithm algo, Quiz quiz, List<List<QuestionResponseViewModel>> answerSets)
         {
             int countOfCorrectQuizes = 0;
             foreach (var answerSet in answerSets)

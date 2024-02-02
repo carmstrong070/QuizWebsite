@@ -1,0 +1,20 @@
+﻿namespace QuizWebsite.Pages
+{
+    public class QuestionResponseViewModel
+    {
+        public long QuestionId { get; set; }
+
+        public string TextResponse { get; set; }
+
+        public string SingleCheckedResponse { get; set; }
+
+        public List<CheckboxOptions> MultiCheckedResponse { get; set; }
+
+        public class CheckboxOptions
+        {
+            public int AnswerOptionId { get; set; }
+
+            public bool IsChecked { get; set; }
+        }
+    }
+}

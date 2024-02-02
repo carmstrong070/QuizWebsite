@@ -178,13 +178,13 @@ namespace QuizWebsite.Web.Test
             };
         }
 
-        private List<QuizAnswersViewModel> GenerateAnswers(Quiz quiz, int percentageCorrect)
+        private List<QuestionResponseViewModel> GenerateAnswers(Quiz quiz, int percentageCorrect)
         {
-            var answers = new List<QuizAnswersViewModel>();
+            var answers = new List<QuestionResponseViewModel>();
 
             foreach (var question in quiz.Questions)
             {
-                var response = new QuizAnswersViewModel()
+                var response = new QuestionResponseViewModel()
                 {
                     QuestionId = question.QuestionId
                 };
@@ -195,13 +195,13 @@ namespace QuizWebsite.Web.Test
                 switch (question.QuestionTypeName)
                 {
                     case SingleSelectQuestionTypeName:
-                        response.Answers = GenerateRadioButtonAnswers((SelectQuestion)question, shouldBeCorrect);
+                        response.TextResponse = GenerateRadioButtonAnswers((SelectQuestion)question, shouldBeCorrect);
                         break;
                     case MultiSelectQuestionTypeName:
-                        response.Answers = GenerateCheckboxAnswers((SelectQuestion)question, shouldBeCorrect);
+                        response.TextResponse = GenerateCheckboxAnswers((SelectQuestion)question, shouldBeCorrect);
                         break;
                     case FreeResponseQuestionTypeName:
-                        response.Answers = GenerateTextAnswer((TextQuestion)question, shouldBeCorrect);
+                        response.TextResponse = GenerateTextAnswer((TextQuestion)question, shouldBeCorrect);
                         break;
                 }
 
