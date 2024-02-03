@@ -13,6 +13,8 @@ namespace QuizWebsite.Core.Models
 
         public DateTime CreatedTimestamp { get; set; }
 
+        public long? TimeLimitInSeconds { get; set; }
+
         public List<QuizQuestion> Questions { get; set; } = new List<QuizQuestion>();
 
     }

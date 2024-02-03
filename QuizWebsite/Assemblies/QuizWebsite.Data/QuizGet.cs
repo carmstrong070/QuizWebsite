@@ -5,22 +5,18 @@ namespace QuizWebsite.Data
 {
     public static class QuizGet
     {
-#if JAHREL
-        public static string ConnectionString { get; set; } = "data source=JAHREL-PC\\SQLEXPRESS;initial catalog=QuizWebsite;persist security info=False;connect timeout=1000;integrated security=SSPI;encrypt=False";
-#else
-        public static string ConnectionString { get; set; } = "data source=BLD\\SQLEXPRESS;initial catalog=QuizWebsite;persist security info=False;connect timeout=1000;integrated security=SSPI;encrypt=False";
-#endif
         public static Quiz GetQuiz(long quizId)
         {
+            var connectionString = ConnectionBucket.ConnectionString;
             var quiz = new Quiz();
 
-            using (var sqlConnection = new SqlConnection(ConnectionString))
+            using (var sqlConnection = new SqlConnection(connectionString))
             {
                 sqlConnection.Open();
                 using (var sqlCommand = sqlConnection.CreateCommand())
                 {
                     sqlCommand.CommandText = @"
-                        SELECT q.title, q.created_timestamp, u.username
+                        SELECT q.title, q.created_timestamp, q.time_limit_in_seconds, u.username
                             FROM quiz AS q
                                 INNER JOIN [user] AS u ON q.author_user_id = u.id
                             WHERE q.id = @quiz_id;
@@ -51,6 +47,8 @@ namespace QuizWebsite.Data
                             quiz.Title = sqlReader[name: "title"].ToString();
                             quiz.Author = sqlReader[name: "username"].ToString();
                             quiz.CreatedTimestamp = (DateTime)sqlReader[name: "created_timestamp"];
+                            if (sqlReader[name: "time_limit_in_seconds"] != DBNull.Value)
+                                quiz.TimeLimitInSeconds = (long?)sqlReader[name: "time_limit_in_seconds"];
                         }
 
                         sqlReader.NextResult();
@@ -112,9 +110,10 @@ namespace QuizWebsite.Data
 
         public static List<Quiz> GetQuizList()
         {
+            var connectionString = ConnectionBucket.ConnectionString;
             var quizList = new List<Quiz>();
 
-            using (var sqlConnection = new SqlConnection(ConnectionString))
+            using (var sqlConnection = new SqlConnection(connectionString))
             {
                 sqlConnection.Open();
                 using (var sqlCommand = sqlConnection.CreateCommand())

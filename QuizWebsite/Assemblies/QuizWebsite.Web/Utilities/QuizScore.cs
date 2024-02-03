@@ -5,10 +5,9 @@ namespace QuizWebsite.Web.Utilities
 {
     public static class QuizScore
     {
-        public static (int CorrectCount, int TotalCount) GetNumberCorrect(Quiz quiz, List<QuestionResponseViewModel> questionResponseList)
+        public static Dictionary<long, bool> GetNumberCorrect(Quiz quiz, List<QuestionResponseViewModel> questionResponseList)
         {
-            var numberCorrect = 0;
-            var answerList = new List<string>();
+            var scoringResultDict = new Dictionary<long, bool>();
 
             for (int i = 0; i < questionResponseList.Count; i++)
             {
@@ -22,9 +21,9 @@ namespace QuizWebsite.Web.Utilities
                         var singleSelectQuestion = (SelectQuestion)quizQuestion;
                         var correctAnswerObj = singleSelectQuestion.AnswerOptions.FirstOrDefault(x => x.IsCorrect == true);
                         if (correctAnswerObj != null && correctAnswerObj.Id.ToString() == responseAnswerId)
-                        {
-                            numberCorrect++;
-                        }
+                            scoringResultDict.Add(questionId, true);
+                        else
+                            scoringResultDict.Add(questionId, false);
                         break;
                     case "multi_select":
                         var checkedResponses = questionResponseList[i].MultiCheckedResponse.Where(x => x.IsChecked == true);
@@ -34,9 +33,10 @@ namespace QuizWebsite.Web.Utilities
                             var multiSelectQuestion = (SelectQuestion)quizQuestion;
                             var correctAnswerIds = multiSelectQuestion.AnswerOptions.Where(x => x.IsCorrect == true).Select(x => x.Id.ToString());
                             if (correctAnswerIds.SequenceEqual(responseAnswerIds))
-                            {
-                                numberCorrect++;
-                            }
+                                scoringResultDict.Add(questionId, true);
+                            else
+                                scoringResultDict.Add(questionId, false);
+
                         }
                         break;
                     case "free_response":
@@ -45,15 +45,15 @@ namespace QuizWebsite.Web.Utilities
                         var textQuestion = (TextQuestion)quizQuestion;
                         var correctAnswerText = textQuestion.AnswerText;
                         if (correctAnswerText == responseText)
-                        {
-                            numberCorrect++;
-                        }
+                            scoringResultDict.Add(questionId, true);
+                        else
+                            scoringResultDict.Add(questionId, false);
                         break;
                 }
 
             }
 
-            return (CorrectCount: numberCorrect, TotalCount: quiz.Questions.Count());
+            return scoringResultDict;
         }
     }
 }

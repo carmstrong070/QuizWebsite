@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using QuizWebsite.Core.Models;
 using QuizWebsite.Data;
 using QuizWebsite.Web.Models;
 using QuizWebsite.Web.Utilities;
@@ -8,12 +9,14 @@ namespace QuizWebsite.Web.Controllers
 {
     public class QuizController : Controller
     {
+
         [HttpGet]
         [Route("Quiz/{quizId}")]
         public IActionResult Quiz(long quizId)
         {
             var vm = new QuizViewModel();
             vm.LoadedQuiz = QuizGet.GetQuiz(quizId);
+            TempData["start_timestamp"] = DateTime.Now;
             return View(vm);
         }
         [HttpPost]
@@ -21,9 +24,27 @@ namespace QuizWebsite.Web.Controllers
         public IActionResult Quiz(long quizId, QuizViewModel vm)
         {
             vm.LoadedQuiz = QuizGet.GetQuiz(quizId);
-            var scoringResult = QuizScore.GetNumberCorrect(vm.LoadedQuiz, vm.QuestionResponses);
+            var scoringResultsDict = QuizScore.GetNumberCorrect(vm.LoadedQuiz, vm.QuestionResponses);
+
+            var quizAttempt = new QuizAttempt();
+            quizAttempt.QuizId = quizId;
+            quizAttempt.start_timestamp = (DateTime)TempData["start_timestamp"];
+            quizAttempt.end_timestamp = DateTime.Now;
+            var attemptId = QuizAttemptInserter.Do(quizAttempt);
+
+            var questionResponses = new List<QuestionResponse>();
+            for (int i = 0; i < scoringResultsDict.Count(); i++)
+            {
+                QuestionResponse questionResponse = new QuestionResponse();
+                questionResponse.QuizAttemptId = attemptId;
+                questionResponse.QuestionId = scoringResultsDict.ElementAt(i).Key;
+                questionResponse.AnsweredCorrectly = scoringResultsDict.ElementAt(i).Value;
+                questionResponses.Add(questionResponse);
+            }
+            QuestionResponder.Insert(questionResponses);
+
             vm.IsSubmitted = true;
-            vm.CountCorrect = scoringResult.CorrectCount;
+            vm.CountCorrect = scoringResultsDict.Count(x => x.Value);
             return View(vm);
         }
     }
