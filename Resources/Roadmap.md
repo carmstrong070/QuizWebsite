@@ -63,4 +63,4 @@ These are still in planning...
 ## Ideation
 
 - Calculate average completion time for quizzes
-  - Prominently display (averageCompletionTime \* 0.75) to the quiz taker as the average completion time
+  - Prominently display (averageCompletionTime x 0.75) to the quiz taker as the average completion time
