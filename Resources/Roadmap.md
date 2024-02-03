@@ -59,3 +59,8 @@ These are still in planning...
 - Advanced quiz features (question images, quiz stats)
 - Advanced account features (profile update, account creation, site administration)
 - Advanced community features (quiz economy, account poverty, achievements, rankings)
+
+## Ideation
+
+- Calculate average completion time for quizzes
+  - Prominently display (averageCompletionTime \* 0.75) to the quiz taker as the average completion time
