@@ -33,14 +33,26 @@
 - [x] 3.3 Wire up navigation to quiz webpage with URL query string
 - [x] 3.4 Wire up navigation to quiz listing webpage
 
+### Section 4 - Persistent Quiz Scoring (for anon)
+
+- [ ] 4.1 SQL insert query to quiz_attempt table
+- [ ] 4.2 QuizWebsite.Data class, "QuizAttempter" to fire SQL insert
+- [ ] 4.3 Controller wireup to "QuizAttempter"
+- [ ] 4.4 Serverside start timestamp on HttpGet, serverside end timestamp on HttpPost
+- [ ] 4.5 Clientside timer
+- [ ] 4.6 Frontend submitted elapsed time message
+- [ ] 4.7 Stat display on QuizPortal page
+
+### Section 5 - Authentication
+
+- JB making some shit up
+
 ## Future Sections
 
 These are still in planning...
 
 - Quiz editing form
 - Accounts and more DB tables
-- Authentication
-- Persisting quiz scoring in DB
 - Advanced quiz features (question images, quiz stats)
 - Advanced account features (profile update, account creation, site administration)
 - Advanced community features (quiz economy, account poverty, achievements, rankings)
