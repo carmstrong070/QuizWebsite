@@ -35,13 +35,16 @@
 
 ### Section 4 - Persistent Quiz Scoring (for anon)
 
-- [ ] 4.1 SQL insert query to quiz_attempt table
-- [ ] 4.2 QuizWebsite.Data class, "QuizAttempter" to fire SQL insert
-- [ ] 4.3 Controller wireup to "QuizAttempter"
-- [ ] 4.4 Serverside start timestamp on HttpGet, serverside end timestamp on HttpPost
-- [ ] 4.5 Clientside timer
-- [ ] 4.6 Frontend submitted elapsed time message
-- [ ] 4.7 Stat display on QuizPortal page
+- [x] 4.1 SQL insert query to quiz_attempt table
+- [x] 4.2 QuizWebsite.Data class, "QuizAttempter" to fire SQL insert
+- [x] 4.3 Controller wireup to "QuizAttempter"
+- [x] 4.4 Serverside start timestamp on HttpGet, serverside end timestamp on HttpPost
+- [x] 4.5 SQL insert query to question_response table
+- [x] 4.6 "QuizAttempter" fire SQL insert to question_response
+- [x] 4.7 Upgrade the Alex scoring algo to return some dict
+- [ ] 4.? Clientside timer
+- [ ] 4.? Frontend submitted elapsed time message
+- [ ] 4.? Stat display on QuizPortal page
 
 ### Section 5 - Authentication
 
