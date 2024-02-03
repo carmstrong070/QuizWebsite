@@ -12,7 +12,7 @@
 
         public class CheckboxOptions
         {
-            public int AnswerOptionId { get; set; }
+            public long AnswerOptionId { get; set; }
 
             public bool IsChecked { get; set; }
         }

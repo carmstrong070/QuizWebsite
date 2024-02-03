@@ -1,5 +1,6 @@
 using QuizWebsite.Core.Models;
 using QuizWebsite.Pages;
+using static QuizWebsite.Pages.QuestionResponseViewModel;
 
 namespace QuizWebsite.Web.Test
 {
@@ -193,10 +194,10 @@ namespace QuizWebsite.Web.Test
                 switch (question.QuestionTypeName)
                 {
                     case SingleSelectQuestionTypeName:
-                        response.TextResponse = GenerateRadioButtonAnswers((SelectQuestion)question, shouldBeCorrect);
+                        response.SingleCheckedResponse = GenerateRadioButtonAnswers((SelectQuestion)question, shouldBeCorrect);
                         break;
                     case MultiSelectQuestionTypeName:
-                        response.TextResponse = GenerateCheckboxAnswers((SelectQuestion)question, shouldBeCorrect);
+                        response.MultiCheckedResponse = GenerateCheckboxAnswers((SelectQuestion)question, shouldBeCorrect);
                         break;
                     case FreeResponseQuestionTypeName:
                         response.TextResponse = GenerateTextAnswer((TextQuestion)question, shouldBeCorrect);
@@ -209,14 +210,14 @@ namespace QuizWebsite.Web.Test
             return answers;
         }
 
-        private List<string> GenerateRadioButtonAnswers(SelectQuestion question, bool isCorrect)
+        private string GenerateRadioButtonAnswers(SelectQuestion question, bool isCorrect)
         {
-            var answers = new List<string>();
+            string answer = null;
 
             if (isCorrect)
             {
                 var correctAnswerOption = question.AnswerOptions.FirstOrDefault(x => x.IsCorrect);
-                answers.Add(correctAnswerOption.Id.ToString());
+                answer = correctAnswerOption.Id.ToString();
             }
             else
             {
@@ -230,59 +231,50 @@ namespace QuizWebsite.Web.Test
                         wrongAnswer = FakerInstance.Random.Int((int)question.AnswerOptions.Min(x => x.Id), (int)question.AnswerOptions.Max(x => x.Id)).ToString();
                     }
                     while (wrongAnswer == correctAnswerOption.Id.ToString());
-                    answers.Add(wrongAnswer);
+                    answer = wrongAnswer;
                 }
             }
 
-            return answers;
+            return answer;
         }
 
-        private List<string> GenerateCheckboxAnswers(SelectQuestion question, bool isCorrect)
+        private List<CheckboxOptions> GenerateCheckboxAnswers(SelectQuestion question, bool isCorrect)
         {
-            var answers = new List<string>();
+            var answers = new List<CheckboxOptions>();
 
-            if (isCorrect)
+            //-- Always populate with correct answers
+            //-- Incorrect-fill will jack up the correct answers
+            foreach (var answerOption in question.AnswerOptions)
             {
-                foreach (var answerOption in question.AnswerOptions)
-                {
-                    if (answerOption.IsCorrect)
-                        answers.Add(answerOption.Id.ToString());
-                    else
-                        answers.Add("false");
-                }
+                if (answerOption.IsCorrect)
+                    answers.Add(new CheckboxOptions() { AnswerOptionId = answerOption.Id, IsChecked = true });
+                else
+                    answers.Add(new CheckboxOptions() { AnswerOptionId = answerOption.Id, IsChecked = false });
             }
-            else
+
+            if (!isCorrect)
             {
-                foreach (var answerOption in question.AnswerOptions)
+                do
                 {
-                    if (FakerInstance.Random.Bool()) //-- Chance to not have any answer
+                    foreach (var answerResponse in answers)
                     {
-                        string wrongAnswer;
-                        do
-                        {
-                            if (FakerInstance.Random.Bool())
-                            {
-                                wrongAnswer = FakerInstance.Random.Int((int)question.AnswerOptions.Min(x => x.Id), (int)question.AnswerOptions.Max(x => x.Id)).ToString();
-                            }
-                            else
-                                wrongAnswer = "false";
-                        }
-                        while (question.AnswerOptions.Where(x => x.IsCorrect).Select(x => x.Id.ToString()).Contains(wrongAnswer));
-                        answers.Add(wrongAnswer);
+                        if (FakerInstance.Random.Bool())
+                            answerResponse.IsChecked = !answerResponse.IsChecked; //-- Rando flip!
                     }
                 }
+                while (question.AnswerOptions.Where(x => x.IsCorrect).Select(x => x.Id).SequenceEqual(answers.Select(x => x.AnswerOptionId))); //-- Dope
             }
 
             return answers;
         }
 
-        private List<string> GenerateTextAnswer(TextQuestion question, bool isCorrect)
+        private string GenerateTextAnswer(TextQuestion question, bool isCorrect)
         {
-            var answers = new List<string>();
+            string answer = null;
 
             if (isCorrect)
             {
-                answers.Add(question.AnswerText);
+                answer = question.AnswerText;
             }
             else
             {
@@ -294,11 +286,11 @@ namespace QuizWebsite.Web.Test
                         wrongAnswer = FakerInstance.Random.Word();
                     }
                     while (wrongAnswer == question.AnswerText);
-                    answers.Add(wrongAnswer);
+                    answer = wrongAnswer;
                 }
             }
 
-            return answers;
+            return answer;
         }
     }
 }
