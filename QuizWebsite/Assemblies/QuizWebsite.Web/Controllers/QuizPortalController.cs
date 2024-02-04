@@ -13,6 +13,7 @@ namespace QuizWebsite.Web.Controllers
         {
             var vm = new QuizPortalViewModel();
             vm.Quizzes = QuizGet.GetQuizList();
+            vm.AverageCompletionTimes = vm.Quizzes.ToDictionary(x => x.QuizId, x => TheAuditor.GetAverageCompletionTime(x.QuizId));
             return View(vm);
         }
     }
