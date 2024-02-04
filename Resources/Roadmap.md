@@ -64,3 +64,11 @@ These are still in planning...
 
 - Calculate average completion time for quizzes
   - Prominently display (averageCompletionTime x 0.75) to the quiz taker as the average completion time
+
+## Stats
+
+- Perfectionists (number of attempts with 100% correct responses) per quiz
+- Average completion time
+- Average score per attempt
+- Fastest Perfect Score
+- Biggest dipshit (most incorrect and slowest time)
