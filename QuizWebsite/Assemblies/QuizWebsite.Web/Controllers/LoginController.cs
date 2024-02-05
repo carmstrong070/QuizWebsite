@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using QuizWebsite.Web.Authentication;
 using QuizWebsite.Web.Models;
@@ -36,7 +35,7 @@ namespace QuizWebsite.Web.Controllers
             if (validateResult.Success)
             {
                 AuthUserManager.SignIn(this.HttpContext, validateResult.User, true);
-                RedirectToPage("/Quizzes"); //TODO: This ain't working just yet
+                return RedirectToAction("QuizPortal", "QuizPortal");
             }
 
             return View(vm);
