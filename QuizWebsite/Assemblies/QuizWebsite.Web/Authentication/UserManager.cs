@@ -1,9 +1,9 @@
-﻿using System.Data;
-using System.Security.Claims;
-using Microsoft.AspNetCore.Authentication;
+﻿using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using QuizWebsite.Data;
 using QuizWebsite.Web.Authentication.Models;
+using System.Security.Claims;
+using System.Text;
 
 namespace QuizWebsite.Web.Authentication
 {
@@ -124,7 +124,7 @@ namespace QuizWebsite.Web.Authentication
         {
             if (!string.IsNullOrEmpty(password))
             {
-                string hashedPassword = PasswordHasher.ComputeHash(password);
+                var hashedPassword = PasswordHasher.ComputeHash(password, Encoding.ASCII.GetBytes(UserGrabber.GetUserSalt(email)));
 
                 var user = UserGrabber.GetUserByCredentials(email, hashedPassword);
 

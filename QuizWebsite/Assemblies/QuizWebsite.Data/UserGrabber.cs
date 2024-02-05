@@ -1,15 +1,33 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.Data.SqlClient;
+﻿using Microsoft.Data.SqlClient;
 using QuizWebsite.Core.Models;
 
 namespace QuizWebsite.Data
 {
     public static class UserGrabber
     {
+
+        public static string GetUserSalt(string email)
+        {
+            var connectionString = ConnectionBucket.ConnectionString;
+
+            using (var sqlConnection = new SqlConnection(connectionString))
+            {
+                sqlConnection.Open();
+                using (var sqlCommand = sqlConnection.CreateCommand())
+                {
+                    sqlCommand.CommandText = @"
+                        SELECT salt
+                            FROM [user]
+                            WHERE email = @email
+                    ";
+                    sqlCommand.Parameters.AddWithValue(parameterName: "email", value: email);
+
+                    var salt = (string)sqlCommand.ExecuteScalar();
+                    return salt;
+                }
+            }
+        }
+
         public static User GetUserByCredentials(string email, string hashedPassword)
         {
             var connectionString = ConnectionBucket.ConnectionString;
@@ -78,7 +96,7 @@ namespace QuizWebsite.Data
             }
         }
 
-        public static void UpdatePassword(long id, string hashedPassword)
+        public static void UpdatePassword(long id, string hashedPassword, string salt)
         {
             var connectionString = ConnectionBucket.ConnectionString;
 
@@ -90,10 +108,34 @@ namespace QuizWebsite.Data
                     sqlCommand.CommandText = @"
                         UPDATE [user]
                             SET hashed_password = @hashed_password
+                            ,salt = @salt
                             WHERE id = @id
                     ";
                     sqlCommand.Parameters.AddWithValue(parameterName: "id", value: id);
                     sqlCommand.Parameters.AddWithValue(parameterName: "hashed_password", value: hashedPassword);
+                    sqlCommand.Parameters.AddWithValue(parameterName: "salt", value: salt);
+
+                    sqlCommand.ExecuteScalar();
+                }
+            }
+        }
+
+        public static void UpdateSalt(long id, byte[] salt)
+        {
+            var connectionString = ConnectionBucket.ConnectionString;
+
+            using (var sqlConnection = new SqlConnection(connectionString))
+            {
+                sqlConnection.Open();
+                using (var sqlCommand = sqlConnection.CreateCommand())
+                {
+                    sqlCommand.CommandText = @"
+                        UPDATE [user]
+                            SET salt = @salt
+                            WHERE id = @id
+                    ";
+                    sqlCommand.Parameters.AddWithValue(parameterName: "id", value: id);
+                    sqlCommand.Parameters.AddWithValue(parameterName: "hashed_password", value: salt);
 
                     sqlCommand.ExecuteScalar();
                 }

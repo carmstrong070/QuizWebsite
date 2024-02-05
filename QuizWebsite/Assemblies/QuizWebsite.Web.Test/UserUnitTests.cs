@@ -1,5 +1,6 @@
 using QuizWebsite.Data;
 using QuizWebsite.Web.Authentication;
+using System.Text;
 
 namespace QuizWebsite.Web.Test
 {
@@ -9,9 +10,11 @@ namespace QuizWebsite.Web.Test
         [TestMethod]
         public void SetUserPassword()
         {
-            string hashedPassword = PasswordHasher.ComputeHash("123456");
+            var salt = PasswordHasher.GenerateNewSalt();
+            string hashedPassword = PasswordHasher.ComputeHash("123456", Encoding.ASCII.GetBytes(salt));
 
-            UserGrabber.UpdatePassword(1, hashedPassword);
+            UserGrabber.UpdatePassword(1, hashedPassword, salt);
+
         }
     }
 }
