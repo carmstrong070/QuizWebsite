@@ -122,14 +122,20 @@ namespace QuizWebsite.Web.Authentication
 
         public ValidateResult Validate(string email, string password)
         {
-            if (!string.IsNullOrEmpty(password))
+            if (email != null)
             {
-                var hashedPassword = PasswordHasher.ComputeHash(password, Encoding.ASCII.GetBytes(UserGrabber.GetUserSalt(email)));
 
-                var user = UserGrabber.GetUserByCredentials(email, hashedPassword);
+                var salt = UserGrabber.GetUserSalt(email);
 
-                if (user != null)
-                    return new ValidateResult(success: true, user: new UserAuthenticationModel() { Id = user.Id, Username = user.Username });
+                if (!string.IsNullOrEmpty(password) && salt != null)
+                {
+                    var hashedPassword = PasswordHasher.ComputeHash(password, Encoding.ASCII.GetBytes(salt));
+
+                    var user = UserGrabber.GetUserByCredentials(email, hashedPassword);
+
+                    if (user != null)
+                        return new ValidateResult(success: true, user: new UserAuthenticationModel() { Id = user.Id, Username = user.Username });
+                }
             }
 
             return new ValidateResult(success: false, error: ValidateResultError.InvalidCredentials);
