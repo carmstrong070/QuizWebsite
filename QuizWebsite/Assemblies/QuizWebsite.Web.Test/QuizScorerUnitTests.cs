@@ -16,7 +16,7 @@ namespace QuizWebsite.Web.Test
             FakerInstance = new Faker();
         }
 
-        private delegate (int CorrectCount, int TotalCount) SolvingAlgorithm(Quiz quiz, List<QuestionResponseViewModel> answers);
+        private delegate Dictionary<long, bool> SolvingAlgorithm(Quiz quiz, List<QuestionResponseViewModel> answers);
 
         [TestMethod]
         public void TestDatAlgo()
@@ -87,7 +87,7 @@ namespace QuizWebsite.Web.Test
             foreach (var answerSet in answerSets)
             {
                 var score = algo(quiz, answerSet);
-                if (score.CorrectCount == score.TotalCount)
+                if (score.Count(x => x.Value) == score.Count())
                     countOfCorrectQuizes++;
             }
             return countOfCorrectQuizes;

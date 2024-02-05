@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\QuizWebsite.Core.Models\QuizWebsite.Core.Models.csproj" />
     <ProjectReference Include="..\QuizWebsite.Data\QuizWebsite.Data.csproj" />
   </ItemGroup>

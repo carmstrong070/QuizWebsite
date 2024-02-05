@@ -1,12 +1,32 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc.Razor;
+using QuizWebsite.Web.Authentication;
+
+//-- Configuration
+var configuration = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
 
 var builder = WebApplication.CreateBuilder(args);
+
+//-- For accessing appsettings.json
+builder.Services.AddSingleton(configuration); //TODO: See if this works
 
 // Add services to the container.
 builder.Services.AddControllersWithViews().AddRazorOptions(options =>
 {
     options.ViewLocationFormats.Add("/Views/{0}" + RazorViewEngine.ViewExtension);
 });
+
+//-- Turn on Auth
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(options =>
+    {
+        options.Cookie.Name = configuration.GetSection("Customizable").GetSection("AuthenticationCookieName").Value;
+        options.ExpireTimeSpan = TimeSpan.FromMinutes(double.Parse(configuration.GetSection("Customizable").GetSection("CookieTimeOutDurationInMinutes").Value));
+        options.SlidingExpiration = true;
+        options.AccessDeniedPath = "/Forbidden/"; //TODO: Figure out the actual path we want
+        options.LoginPath = "/";
+    });
+builder.Services.AddScoped<IUserManager, UserManager>();
 
 var app = builder.Build();
 
