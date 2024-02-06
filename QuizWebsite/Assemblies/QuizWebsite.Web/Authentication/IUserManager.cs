@@ -2,24 +2,22 @@
 
 namespace QuizWebsite.Web.Authentication
 {
-    //public enum SignUpResultError
-    //{
-    //    CredentialTypeNotFound
-    //}
+    public enum SignUpResultError
+    {
+        UserAlreadyExists
+    }
 
-    //public class SignUpResult
-    //{
-    //    public User User { get; set; }
-    //    public bool Success { get; set; }
-    //    public SignUpResultError? Error { get; set; }
+    public class SignUpResult
+    {
+        public UserAuthenticationModel User { get; set; }
+        public SignUpResultError? Error { get; set; }
 
-    //    public SignUpResult(User user = null, bool success = false, SignUpResultError? error = null)
-    //    {
-    //        this.User = user;
-    //        this.Success = success;
-    //        this.Error = error;
-    //    }
-    //}
+        public SignUpResult(UserAuthenticationModel user = null, SignUpResultError? error = null)
+        {
+            this.User = user;
+            this.Error = error;
+        }
+    }
 
     public enum ValidateResultError
     {
@@ -60,8 +58,7 @@ namespace QuizWebsite.Web.Authentication
 
     public interface IUserManager
     {
-        //SignUpResult SignUp(string name, string credentialTypeCode, string identifier);
-        //SignUpResult SignUp(string name, string credentialTypeCode, string identifier, string secret);
+        SignUpResult SignUp(string username, string email, string password);
         //void AddToRole(User user, string roleCode);
         //void AddToRole(User user, Role role);
         //void RemoveFromRole(User user, string roleCode);
@@ -70,7 +67,7 @@ namespace QuizWebsite.Web.Authentication
         //ValidateResult Validate(string credentialTypeCode, string identifier);
         ValidateResult Validate(string email, string password);
         Task SignIn(HttpContext httpContext, UserAuthenticationModel user, bool isPersistent = false);
-        Task SignOut(HttpContext httpContext);
+        Task LogOut(HttpContext httpContext);
         long? GetCurrentUserId(HttpContext httpContext);
         UserAuthenticationModel GetCurrentUser(HttpContext httpContext);
     }

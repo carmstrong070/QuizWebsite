@@ -16,7 +16,6 @@ namespace QuizWebsite.Web.Controllers
 
         [AllowAnonymous]
         [HttpGet]
-        [Route("")]
         [Route("Login")]
         public IActionResult Login()
         {
@@ -26,7 +25,6 @@ namespace QuizWebsite.Web.Controllers
 
         [AllowAnonymous]
         [HttpPost]
-        [Route("")]
         [Route("Login")]
         public IActionResult Login(LoginViewModel vm)
         {

@@ -1,27 +1,31 @@
-﻿@model LoginViewModel
+﻿@model SignUpViewModel
 @{
     ViewData["Title"] = "Home Page";
 }
 
 <div class="text-center mb-5">
-    <h1>Log in here:</h1>
+    <h1>Sign Up in here:</h1>
 </div>
 
 <div class="h-100 d-flex align-items-center justify-content-center">
     <div class="w-50">
         <form method="post">
             <div class="form-outline mb-4">
-                @Html.TextBoxFor(m => m.Username, new { @type = "email", @class = "form-control" })
+                @Html.TextBoxFor(m => m.Email, new { @type = "email", @class = "form-control" })
                 <label class="form-label" for="form2Example1">Email address</label>
+            </div>
+            <div class="form-outline mb-4">
+                @Html.TextBoxFor(m => m.Username, new { @class = "form-control" })
+                <label class="form-label" for="form2Example1">User name</label>
             </div>
             <div class="form-outline mb-4">
                 @Html.TextBoxFor(m => m.Password, new { @type = "password", @class = "form-control" })
                 <label class="form-label" for="form2Example2">Password</label>
             </div>
             <div class="row mb-4">
-                <button type="submit" class="btn btn-primary btn-block mb-4">Sign in</button>
+                <button type="submit" class="btn btn-primary btn-block mb-4">Quiz Time!</button>
                 <div class="text-center">
-                    <p>Not a member? <a asp-controller="SignUp" asp-action="SignUp">Get in here!</a></p>
+                    <p>Already a member? <a asp-controller="Login" asp-action="Login">Log In dipshit</a></p>
                 </div>
             </div>
         </form>

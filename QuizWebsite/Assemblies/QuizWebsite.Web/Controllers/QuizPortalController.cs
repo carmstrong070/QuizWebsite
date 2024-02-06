@@ -1,14 +1,13 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using QuizWebsite.Data;
 using QuizWebsite.Web.Models;
 
 namespace QuizWebsite.Web.Controllers
 {
-    [Authorize]
     public class QuizPortalController : Controller
     {
         [HttpGet]
+        [Route("")]
         [Route("Quizzes")]
         public IActionResult QuizPortal()
         {

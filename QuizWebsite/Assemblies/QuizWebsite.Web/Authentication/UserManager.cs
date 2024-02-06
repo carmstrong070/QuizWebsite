@@ -9,44 +9,24 @@ namespace QuizWebsite.Web.Authentication
 {
     public class UserManager : IUserManager
     {
-        //public SignUpResult SignUp(string name, string credentialTypeCode, string identifier)
-        //{
-        //    return this.SignUp(name, credentialTypeCode, identifier, null);
-        //}
+        public SignUpResult SignUp(string username, string email, string password)
+        {
 
-        //public SignUpResult SignUp(string name, string credentialTypeCode, string identifier, string secret)
-        //{
-        //    User user = new User();
+            if (UserHandler.CheckUserExists(username, email))
+                return new SignUpResult(error: SignUpResultError.UserAlreadyExists);
 
-        //    user.Name = name;
-        //    user.Created = DateTime.Now;
-        //    this.storage.Users.Add(user);
-        //    this.storage.SaveChanges();
 
-        //    CredentialType credentialType = this.storage.CredentialTypes.FirstOrDefault(ct => ct.Code.ToLower() == credentialTypeCode.ToLower());
+            string salt = PasswordHasher.GenerateNewSalt();
+            string hashedPassword = PasswordHasher.ComputeHash(password, Encoding.ASCII.GetBytes(salt));
 
-        //    if (credentialType == null)
-        //        return new SignUpResult(success: false, error: SignUpResultError.CredentialTypeNotFound);
+            var userId = UserHandler.CreateUser(username, email, hashedPassword, salt);
 
-        //    Credential credential = new Credential();
+            var user = new UserAuthenticationModel();
+            user.Username = username;
+            user.Id = userId;
 
-        //    credential.UserId = user.Id;
-        //    credential.CredentialTypeId = credentialType.Id;
-        //    credential.Identifier = identifier;
-
-        //    if (!string.IsNullOrEmpty(secret))
-        //    {
-        //        byte[] salt = PasswordHasher.GenerateRandomSalt();
-        //        string hash = PasswordHasher.ComputeHash(secret, salt);
-
-        //        credential.Secret = hash;
-        //        credential.Extra = Convert.ToBase64String(salt);
-        //    }
-
-        //    this.storage.Credentials.Add(credential);
-        //    this.storage.SaveChanges();
-        //    return new SignUpResult(user: user, success: true);
-        //}
+            return new SignUpResult(user);
+        }
 
         //public void AddToRole(User user, string roleCode)
         //{
@@ -125,13 +105,13 @@ namespace QuizWebsite.Web.Authentication
             if (email != null)
             {
 
-                var salt = UserGrabber.GetUserSalt(email);
+                var salt = UserHandler.GetUserSalt(email);
 
                 if (!string.IsNullOrEmpty(password) && salt != null)
                 {
                     var hashedPassword = PasswordHasher.ComputeHash(password, Encoding.ASCII.GetBytes(salt));
 
-                    var user = UserGrabber.GetUserByCredentials(email, hashedPassword);
+                    var user = UserHandler.GetUserByCredentials(email, hashedPassword);
 
                     if (user != null)
                         return new ValidateResult(success: true, user: new UserAuthenticationModel() { Id = user.Id, Username = user.Username });
@@ -156,7 +136,7 @@ namespace QuizWebsite.Web.Authentication
             );
         }
 
-        public async Task SignOut(HttpContext httpContext)
+        public async Task LogOut(HttpContext httpContext)
         {
             await httpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
         }
@@ -186,7 +166,7 @@ namespace QuizWebsite.Web.Authentication
             if (!currentUserId.HasValue)
                 return null;
 
-            var user = UserGrabber.GetUserById(currentUserId.Value);
+            var user = UserHandler.GetUserById(currentUserId.Value);
 
             if (user == null)
                 return null;

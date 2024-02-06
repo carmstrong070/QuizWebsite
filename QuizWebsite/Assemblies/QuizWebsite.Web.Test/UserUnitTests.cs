@@ -13,8 +13,18 @@ namespace QuizWebsite.Web.Test
             var salt = PasswordHasher.GenerateNewSalt();
             string hashedPassword = PasswordHasher.ComputeHash("123456", Encoding.ASCII.GetBytes(salt));
 
-            UserGrabber.UpdatePassword(1, hashedPassword, salt);
+            UserHandler.UpdatePassword(1, hashedPassword, salt);
 
+        }
+
+        [TestMethod]
+        public void CheckUserExists()
+        {
+            var username = "username3";
+            var email = "username2";
+
+            var result = UserHandler.CheckUserExists(username, email);
+            Assert.IsTrue(result);
         }
     }
 }

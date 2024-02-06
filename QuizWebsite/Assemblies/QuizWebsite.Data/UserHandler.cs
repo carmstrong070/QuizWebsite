@@ -3,8 +3,41 @@ using QuizWebsite.Core.Models;
 
 namespace QuizWebsite.Data
 {
-    public static class UserGrabber
+    public static class UserHandler
     {
+
+        public static long CreateUser(string username, string email, string hashedPassword, string salt)
+        {
+            var connectionString = ConnectionBucket.ConnectionString;
+
+            using (var sqlConnection = new SqlConnection(connectionString))
+            {
+                sqlConnection.Open();
+                using (var sqlCommand = sqlConnection.CreateCommand())
+                {
+                    sqlCommand.CommandText = @" 
+                        INSERT INTO [user]
+                               (username
+                               ,hashed_password
+                               ,email
+                               ,salt)
+                         OUTPUT inserted.id
+                         VALUES
+                               (@username
+                               ,@hashed_password
+                               ,@email
+                               ,@salt)
+                    ";
+                    sqlCommand.Parameters.AddWithValue(parameterName: "username", value: username);
+                    sqlCommand.Parameters.AddWithValue(parameterName: "hashed_password", value: hashedPassword);
+                    sqlCommand.Parameters.AddWithValue(parameterName: "email", value: email);
+                    sqlCommand.Parameters.AddWithValue(parameterName: "salt", value: salt);
+
+                    var userId = (long)sqlCommand.ExecuteScalar();
+                    return userId;
+                }
+            }
+        }
 
         public static string GetUserSalt(string email)
         {
@@ -59,6 +92,31 @@ namespace QuizWebsite.Data
                         else
                             return null;
                     }
+                }
+            }
+        }
+
+        public static bool CheckUserExists(string username, string email)
+        {
+            var connectionString = ConnectionBucket.ConnectionString;
+
+            using (var sqlConnection = new SqlConnection(connectionString))
+            {
+                sqlConnection.Open();
+                using (var sqlCommand = sqlConnection.CreateCommand())
+                {
+                    sqlCommand.CommandText = @"
+                        SELECT TOP 1 id
+                            FROM [user]
+                            WHERE @username IN (username, email) OR @email IN (username, email)
+                    ";
+                    sqlCommand.Parameters.AddWithValue(parameterName: "username", value: username);
+                    sqlCommand.Parameters.AddWithValue(parameterName: "email", value: email);
+
+                    var userObj = sqlCommand.ExecuteScalar();
+                    if (userObj != null)
+                        return true;
+                    return false;
                 }
             }
         }

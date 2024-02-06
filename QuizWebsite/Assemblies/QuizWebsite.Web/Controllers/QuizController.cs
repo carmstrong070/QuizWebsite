@@ -3,6 +3,7 @@ using QuizWebsite.Core.Models;
 using QuizWebsite.Data;
 using QuizWebsite.Web.Models;
 using QuizWebsite.Web.Utilities;
+using System.Security.Claims;
 
 
 namespace QuizWebsite.Web.Controllers
@@ -27,6 +28,10 @@ namespace QuizWebsite.Web.Controllers
             var scoringResultsDict = QuizScore.GetNumberCorrect(vm.LoadedQuiz, vm.QuestionResponses);
 
             var quizAttempt = new QuizAttempt();
+            if (this.User.Identity.IsAuthenticated)
+            {
+                quizAttempt.UserId = long.Parse(this.User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier).Value);
+            }
             quizAttempt.QuizId = quizId;
             quizAttempt.start_timestamp = (DateTime)TempData["start_timestamp"];
             quizAttempt.end_timestamp = DateTime.Now;
