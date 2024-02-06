@@ -3,7 +3,7 @@ using QuizWebsite.Core.Models;
 
 namespace QuizWebsite.Data
 {
-    public static class QuizAttemptInserter
+    public static class QuizAttemptHandler
     {
         public static long Do(QuizAttempt quizAttempt)
         {

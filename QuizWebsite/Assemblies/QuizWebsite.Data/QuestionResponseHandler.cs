@@ -3,7 +3,7 @@ using QuizWebsite.Core.Models;
 
 namespace QuizWebsite.Data
 {
-    public static class QuestionResponder
+    public static class QuestionResponseHandler
     {
         public static void Insert(List<QuestionResponse> questionResponses)
         {

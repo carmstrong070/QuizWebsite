@@ -16,7 +16,7 @@ namespace QuizWebsite.Web.Controllers
         public IActionResult Quiz(long quizId)
         {
             var vm = new QuizViewModel();
-            vm.LoadedQuiz = QuizGet.GetQuiz(quizId);
+            vm.LoadedQuiz = QuizHandler.GetQuiz(quizId);
             TempData["start_timestamp"] = DateTime.Now;
             return View(vm);
         }
@@ -24,7 +24,7 @@ namespace QuizWebsite.Web.Controllers
         [Route("Quiz/{quizId}")]
         public IActionResult Quiz(long quizId, QuizViewModel vm)
         {
-            vm.LoadedQuiz = QuizGet.GetQuiz(quizId);
+            vm.LoadedQuiz = QuizHandler.GetQuiz(quizId);
             var scoringResultsDict = QuizScore.GetNumberCorrect(vm.LoadedQuiz, vm.QuestionResponses);
 
             var quizAttempt = new QuizAttempt();
@@ -35,7 +35,7 @@ namespace QuizWebsite.Web.Controllers
             quizAttempt.QuizId = quizId;
             quizAttempt.start_timestamp = (DateTime)TempData["start_timestamp"];
             quizAttempt.end_timestamp = DateTime.Now;
-            var attemptId = QuizAttemptInserter.Do(quizAttempt);
+            var attemptId = QuizAttemptHandler.Do(quizAttempt);
 
             var questionResponses = new List<QuestionResponse>();
             for (int i = 0; i < scoringResultsDict.Count(); i++)
@@ -46,7 +46,7 @@ namespace QuizWebsite.Web.Controllers
                 questionResponse.AnsweredCorrectly = scoringResultsDict.ElementAt(i).Value;
                 questionResponses.Add(questionResponse);
             }
-            QuestionResponder.Insert(questionResponses);
+            QuestionResponseHandler.Insert(questionResponses);
 
             vm.IsSubmitted = true;
             vm.CountCorrect = scoringResultsDict.Count(x => x.Value);
