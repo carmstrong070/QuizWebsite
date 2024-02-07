@@ -96,7 +96,7 @@ namespace QuizWebsite.Data
             }
         }
 
-        public static bool CheckUserExists(string username, string email)
+        public static bool CheckUserExists(string username, string email, long? excludeId = null)
         {
             var connectionString = ConnectionBucket.ConnectionString;
 
@@ -108,10 +108,11 @@ namespace QuizWebsite.Data
                     sqlCommand.CommandText = @"
                         SELECT TOP 1 id
                             FROM [user]
-                            WHERE @username IN (username, email) OR @email IN (username, email)
+                            WHERE (@username IN (username, email) OR @email IN (username, email)) AND id != @excludeId
                     ";
                     sqlCommand.Parameters.AddWithValue(parameterName: "username", value: username);
                     sqlCommand.Parameters.AddWithValue(parameterName: "email", value: email);
+                    sqlCommand.Parameters.AddWithValue(parameterName: "excludeId", value: excludeId ?? 0);
 
                     var userObj = sqlCommand.ExecuteScalar();
                     if (userObj != null)
@@ -194,6 +195,30 @@ namespace QuizWebsite.Data
                     ";
                     sqlCommand.Parameters.AddWithValue(parameterName: "id", value: id);
                     sqlCommand.Parameters.AddWithValue(parameterName: "hashed_password", value: salt);
+
+                    sqlCommand.ExecuteScalar();
+                }
+            }
+        }
+
+        public static void EditUserDetails(long id, string email, string username)
+        {
+            var connectionString = ConnectionBucket.ConnectionString;
+
+            using (var sqlConnection = new SqlConnection(connectionString))
+            {
+                sqlConnection.Open();
+                using (var sqlCommand = sqlConnection.CreateCommand())
+                {
+                    sqlCommand.CommandText = @"
+                        UPDATE [user]
+                            SET email = @email
+                            ,username = @username
+                            WHERE id = @id
+                    ";
+                    sqlCommand.Parameters.AddWithValue(parameterName: "id", value: id);
+                    sqlCommand.Parameters.AddWithValue(parameterName: "email", value: email);
+                    sqlCommand.Parameters.AddWithValue(parameterName: "username", value: username);
 
                     sqlCommand.ExecuteScalar();
                 }

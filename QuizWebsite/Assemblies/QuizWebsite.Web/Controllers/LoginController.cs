@@ -5,14 +5,9 @@ using QuizWebsite.Web.Models;
 
 namespace QuizWebsite.Web.Controllers
 {
-    public class LoginController : Controller
+    public class LoginController : AuthenticatedControllerBase
     {
-        protected IUserManager AuthUserManager { get; set; }
-
-        public LoginController(IUserManager authUserManager)
-        {
-            AuthUserManager = authUserManager;
-        }
+        public LoginController(IUserManager authUserManager) : base(authUserManager) { }
 
         [AllowAnonymous]
         [HttpGet]

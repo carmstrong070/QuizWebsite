@@ -1,16 +1,19 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using QuizWebsite.Core.Models;
 using QuizWebsite.Data;
+using QuizWebsite.Web.Authentication;
 using QuizWebsite.Web.Models;
 using QuizWebsite.Web.Utilities;
-using System.Security.Claims;
 
 
 namespace QuizWebsite.Web.Controllers
 {
-    public class QuizController : Controller
+    public class QuizController : AuthenticatedControllerBase
     {
+        public QuizController(IUserManager authUserManager) : base(authUserManager) { }
 
+        [AllowAnonymous]
         [HttpGet]
         [Route("Quiz/{quizId}")]
         public IActionResult Quiz(long quizId)
@@ -20,6 +23,8 @@ namespace QuizWebsite.Web.Controllers
             TempData["start_timestamp"] = DateTime.Now;
             return View(vm);
         }
+
+        [AllowAnonymous]
         [HttpPost]
         [Route("Quiz/{quizId}")]
         public IActionResult Quiz(long quizId, QuizViewModel vm)
@@ -28,10 +33,7 @@ namespace QuizWebsite.Web.Controllers
             var scoringResultsDict = QuizScore.GetNumberCorrect(vm.LoadedQuiz, vm.QuestionResponses);
 
             var quizAttempt = new QuizAttempt();
-            if (this.User.Identity.IsAuthenticated)
-            {
-                quizAttempt.UserId = long.Parse(this.User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier).Value);
-            }
+            quizAttempt.UserId = UserId;
             quizAttempt.QuizId = quizId;
             quizAttempt.start_timestamp = (DateTime)TempData["start_timestamp"];
             quizAttempt.end_timestamp = DateTime.Now;

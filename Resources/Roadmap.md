@@ -42,7 +42,7 @@
 - [x] 4.5 SQL insert query to question_response table
 - [x] 4.6 "QuizAttempter" fire SQL insert to question_response
 - [x] 4.7 Upgrade the Alex scoring algo to return some dict
-- [X] 4.8 Global stats display on QuizPortal page
+- [x] 4.8 Global stats display on QuizPortal page
 - [ ] 4.? Clientside timer
 - [ ] 4.? Frontend submitted elapsed time message
 
@@ -61,25 +61,28 @@
 - [x] 6.1 Webpage and view model for user sign up
 - [x] 6.2 Data layer queries for creating a new user
 - [x] 6.3 Controller wireup to sign up
-- [ ] 6.4 Webpage and view model for user to change account details
-- [ ] 6.5 Data layer queries for updating an existing user
-- [ ] 6.6 Controller wireup for user to edit their account details
-- [ ] 6.7 Refactor layouts for authenticated user vs anon user
+- [x] 6.4 Webpage and view model for user to change account details
+- [x] 6.5 Data layer queries for updating an existing user
+- [x] 6.6 Controller wireup for user to edit their account details
+- [x] 6.7 Refactor layouts for authenticated user vs anon user
 
 ### Section 7 - Stats
+
 - [ ] 7.1 Display user's personal stats
 - [ ] 7.2a Display global stats for overall score after quiz completion
 - [ ] 7.2b Display global stats for each question after quiz completion
 - [ ] 7.3 Display stats in quiz portal (i.e., Number of completions)
 
 ### Section 8 - Admins
+
 - [ ] 8.0 Create Admin role
 - [ ] 8.1 Create view to see all users
 - [ ] 8.2 Create view to edit user
 - [ ] 8.3 Data layer queries to view/edit users
 - [ ] 8.4 Lock down admin pages
 
-### Section 9 - Scary
+### Section 9 - Final Boss
+
 - [ ] 9.1 Create quiz editing view
 - [ ] 9.2 Data layer queries for creating a new quiz
 - [ ] 9.3 Create view to look at all of a users quizzes
