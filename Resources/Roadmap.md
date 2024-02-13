@@ -69,6 +69,9 @@
 ### Section 7 - Stats
 
 - [ ] 7.1 Display user's personal stats
+- [x] 7.1a Time spent in quizzes overall
+- [ ] 7.1b Average score
+- [ ] 7.1c Latest quiz taken
 - [ ] 7.2a Display global stats for overall score after quiz completion
 - [ ] 7.2b Display global stats for each question after quiz completion
 - [ ] 7.3 Display stats in quiz portal (i.e., Number of completions)
