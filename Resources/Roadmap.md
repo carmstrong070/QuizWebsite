@@ -70,8 +70,9 @@
 
 - [ ] 7.1 Display user's personal stats
 - [x] 7.1a Time spent in quizzes overall
-- [ ] 7.1b Average score
-- [ ] 7.1c Latest quiz taken
+- [ ] 7.1b Average quiz score
+- [ ] 7.1c Average questions correct
+- [ ] 7.1d Latest quiz taken
 - [ ] 7.2a Display global stats for overall score after quiz completion
 - [ ] 7.2b Display global stats for each question after quiz completion
 - [ ] 7.3 Display stats in quiz portal (i.e., Number of completions)
@@ -107,7 +108,8 @@ These are still in planning...
 - Personalized user stats
   - Time spent in quizzes overall
   - Average time spent in quiz
-  - Average score
+  - Average quiz score
+  - Average questions correct
   - Latest quiz taken
   - Closest better user on taken quizzes
 
@@ -118,3 +120,6 @@ These are still in planning...
 - Average score per attempt
 - Fastest Perfect Score
 - Biggest dipshit (most incorrect and slowest time)
+
+  for each quiz attempt that contains user's id
+  sum the (total of questions in the quiz MINUS the number of question responses that were answered correctly)

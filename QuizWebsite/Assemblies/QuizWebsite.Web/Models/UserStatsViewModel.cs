@@ -6,7 +6,7 @@ namespace QuizWebsite.Web.Models
     {
         public TimeSpan? TotalTimeQuizzing { get; set; }
 
-        public float? AverageScore { get; set; }
+        public decimal? AverageQuizScore { get; set; }
 
         public Quiz LastQuizCompleted { get; set; }
     }
