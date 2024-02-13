@@ -106,6 +106,7 @@ These are still in planning...
   - Average time spent in quiz
   - Average score
   - Latest quiz taken
+  - Closest better user on taken quizzes
 
 ## Stats
 
