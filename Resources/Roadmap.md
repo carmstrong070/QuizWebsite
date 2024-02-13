@@ -68,11 +68,11 @@
 
 ### Section 7 - Stats
 
-- [ ] 7.1 Display user's personal stats
+- [x] 7.1 Display user's personal stats
 - [x] 7.1a Time spent in quizzes overall
-- [ ] 7.1b Average quiz score
-- [ ] 7.1c Average questions correct
-- [ ] 7.1d Latest quiz taken
+- [x] 7.1b Average quiz score
+- [x] 7.1c Average questions correct
+- [x] 7.1d Latest quiz taken
 - [ ] 7.2a Display global stats for overall score after quiz completion
 - [ ] 7.2b Display global stats for each question after quiz completion
 - [ ] 7.3 Display stats in quiz portal (i.e., Number of completions)
@@ -120,6 +120,3 @@ These are still in planning...
 - Average score per attempt
 - Fastest Perfect Score
 - Biggest dipshit (most incorrect and slowest time)
-
-  for each quiz attempt that contains user's id
-  sum the (total of questions in the quiz MINUS the number of question responses that were answered correctly)

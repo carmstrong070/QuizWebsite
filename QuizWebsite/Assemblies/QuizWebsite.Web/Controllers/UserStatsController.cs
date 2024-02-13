@@ -15,6 +15,9 @@ namespace QuizWebsite.Web.Controllers
             var userStatsViewModel = new UserStatsViewModel();
             userStatsViewModel.TotalTimeQuizzing = TheAuditor.GetTotalTimeQuizzing(UserId.Value);
             userStatsViewModel.AverageQuizScore = TheAuditor.GetAverageQuizScore(UserId.Value);
+            userStatsViewModel.OverallQuestionsCorrect = TheAuditor.GetOverallQuestionsCorrect(UserId.Value);
+            userStatsViewModel.LastQuizCompleted = TheAuditor.GetLastQuizTaken(UserId.Value);
+
             return View("UserStats", userStatsViewModel);
         }
     }
