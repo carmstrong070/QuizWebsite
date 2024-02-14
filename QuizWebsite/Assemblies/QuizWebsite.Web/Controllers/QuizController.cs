@@ -51,6 +51,7 @@ namespace QuizWebsite.Web.Controllers
             QuestionResponseHandler.Insert(questionResponses);
 
             vm.IsSubmitted = true;
+            vm.GlobalAverageScore = TheAuditor.GetAverageQuizScore(quizId);
             vm.CountCorrect = scoringResultsDict.Count(x => x.Value);
             return View(vm);
         }

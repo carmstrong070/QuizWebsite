@@ -29,8 +29,12 @@ namespace QuizWebsite.Data
                 }
             }
         }
-
-        public static decimal? GetAverageQuizScore(long userId)
+        /// <summary>
+        /// Gets average score of every quiz for a user
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
+        public static decimal? GetAverageUserQuizScore(long userId)
         {
             var connectionString = ConnectionBucket.ConnectionString;
 
@@ -62,7 +66,7 @@ namespace QuizWebsite.Data
             }
         }
 
-        public static decimal? GetOverallQuestionsCorrect(long userId)
+        public static decimal? GetOverallUserQuestionsCorrect(long userId)
         {
             var connectionString = ConnectionBucket.ConnectionString;
 
@@ -88,7 +92,7 @@ namespace QuizWebsite.Data
             }
         }
 
-        public static Quiz GetLastQuizTaken(long userId)
+        public static Quiz GetLastUserQuizTaken(long userId)
         {
             var connectionString = ConnectionBucket.ConnectionString;
             var quiz = new Quiz();

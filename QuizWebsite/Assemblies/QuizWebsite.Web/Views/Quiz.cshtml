@@ -111,6 +111,21 @@
                 <div class="modal-body">
                     <p>You scored a @(Model.CountCorrect) out of @(Model.LoadedQuiz.Questions.Count()), that's @(percentCorrect * 100)%</p>
                 </div>
+                @if (Model.GlobalAverageScore.HasValue)
+                {
+                    if (percentCorrect > (double)Model.GlobalAverageScore.Value)
+                    {
+                        <div class="modal-body">
+                            <p>That's @((Math.Abs((double)Model.GlobalAverageScore.Value - percentCorrect)).ToString("0.00%")) higher than average</p>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="modal-body">
+                            <p>Interesting, a majority of people are better than you. That's @(Math.Abs(percentCorrect - (double)Model.GlobalAverageScore.Value).ToString("0.00%")) below average</p>
+                        </div>
+                    }
+                }
                 <div class="modal-footer">
                     <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
                 </div>

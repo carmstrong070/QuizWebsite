@@ -14,5 +14,7 @@ namespace QuizWebsite.Web.Models
 
         public int CountCorrect { get; set; }
 
+        public decimal? GlobalAverageScore { get; set; }
+
     }
 }

@@ -9,7 +9,7 @@ namespace QuizWebsite.Web.Test
         public void TestGetAverageQuizScore()
         {
             long userId = 1;
-            var result = TheAuditor.GetAverageQuizScore(userId);
+            var result = TheAuditor.GetAverageUserQuizScore(userId);
             Console.WriteLine(result);
         }
     }

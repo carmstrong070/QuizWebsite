@@ -73,7 +73,7 @@
 - [x] 7.1b Average quiz score
 - [x] 7.1c Average questions correct
 - [x] 7.1d Latest quiz taken
-- [ ] 7.2a Display global stats for overall score after quiz completion
+- [x] 7.2a Display global stats for overall score after quiz completion
 - [ ] 7.2b Display global stats for each question after quiz completion
 - [ ] 7.3 Display stats in quiz portal (i.e., Number of completions)
 
@@ -106,11 +106,7 @@ These are still in planning...
 - Calculate average completion time for quizzes
   - Prominently display (averageCompletionTime x 0.75) to the quiz taker as the average completion time
 - Personalized user stats
-  - Time spent in quizzes overall
-  - Average time spent in quiz
-  - Average quiz score
-  - Average questions correct
-  - Latest quiz taken
+  - Average time spent per question
   - Closest better user on taken quizzes
 
 ## Stats
