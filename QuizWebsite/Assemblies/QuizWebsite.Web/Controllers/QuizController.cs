@@ -52,7 +52,9 @@ namespace QuizWebsite.Web.Controllers
 
             vm.IsSubmitted = true;
             vm.GlobalAverageScore = TheAuditor.GetAverageQuizScore(quizId);
+            vm.GlobalAverageQuestionScore = TheAuditor.GetAverageQuestionScore(quizId);
             vm.CountCorrect = scoringResultsDict.Count(x => x.Value);
+
             return View(vm);
         }
     }

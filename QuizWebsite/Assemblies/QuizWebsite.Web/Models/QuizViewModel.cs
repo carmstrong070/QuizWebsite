@@ -16,5 +16,7 @@ namespace QuizWebsite.Web.Models
 
         public decimal? GlobalAverageScore { get; set; }
 
+        public Dictionary<long, decimal> GlobalAverageQuestionScore { get; set; }
+
     }
 }

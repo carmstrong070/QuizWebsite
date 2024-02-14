@@ -40,7 +40,7 @@
                 if (question.QuestionTypeName == "single_select")
                 {
                     <div class="form-check">
-                        @Html.RadioButton($"QuestionResponses[{questionIndex}].SingleCheckedResponse", answerOption.Id, Model.IsSubmitted ? new { @class = "form-check-input", @disabled = ""} : new { @class = "form-check-input" })
+                        @Html.RadioButton($"QuestionResponses[{questionIndex}].SingleCheckedResponse", answerOption.Id, Model.IsSubmitted ? new { @class = "form-check-input", @disabled = "" } : new { @class = "form-check-input" })
                         <label class="form-check-label">@answerOption.OptionText</label>
                     </div>
                 }
@@ -62,7 +62,7 @@
 
             <div class="mb-3">
                 <label class="form-label">Answer</label>
-                @Html.TextBox($"QuestionResponses[{questionIndex}].TextResponse", "", Model.IsSubmitted ? new { @class = "form-control", @placeholder = "Answer", @disabled = ""} :  new { @class = "form-control", @placeholder = "Answer" })
+                @Html.TextBox($"QuestionResponses[{questionIndex}].TextResponse", "", Model.IsSubmitted ? new { @class = "form-control", @placeholder = "Answer", @disabled = "" } : new { @class = "form-control", @placeholder = "Answer" })
             </div>
         }
     }
@@ -110,22 +110,38 @@
                 </div>
                 <div class="modal-body">
                     <p>You scored a @(Model.CountCorrect) out of @(Model.LoadedQuiz.Questions.Count()), that's @(percentCorrect * 100)%</p>
-                </div>
+                
                 @if (Model.GlobalAverageScore.HasValue)
                 {
                     if (percentCorrect > (double)Model.GlobalAverageScore.Value)
                     {
-                        <div class="modal-body">
-                            <p>That's @((Math.Abs((double)Model.GlobalAverageScore.Value - percentCorrect)).ToString("0.00%")) higher than average</p>
-                        </div>
+
+                        <p>That's @((Math.Abs((double)Model.GlobalAverageScore.Value - percentCorrect)).ToString("0.00%")) higher than average</p>
+
                     }
                     else
                     {
-                        <div class="modal-body">
-                            <p>Interesting, a majority of people are better than you. That's @(Math.Abs(percentCorrect - (double)Model.GlobalAverageScore.Value).ToString("0.00%")) below average</p>
-                        </div>
+
+                        <p>Interesting, a majority of people are better than you. That's @(Math.Abs(percentCorrect - (double)Model.GlobalAverageScore.Value).ToString("0.00%")) below average</p>
+
                     }
                 }
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Question Number</th>
+                            <th>Global Percent Correct</th>
+                        </tr>
+                    </thead>
+                    @foreach (var question in Model.GlobalAverageQuestionScore)
+                    {
+                        <tr>
+                            <td>@(question.Key)</td>
+                            <td>@(question.Value.ToString("0.00%"))</td>
+                        </tr>
+                    }
+                </table>
+                </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
                 </div>

@@ -66,5 +66,38 @@ namespace QuizWebsite.Data
                 }
             }
         }
+
+        public static Dictionary<long, decimal> GetAverageQuestionScore(long quizId)
+        {
+            var AverageQuestionScore = new Dictionary<long, decimal>();
+
+            var connectionString = ConnectionBucket.ConnectionString;
+
+            using (var sqlConnection = new SqlConnection(connectionString))
+            {
+                sqlConnection.Open();
+                using (var sqlCommand = sqlConnection.CreateCommand())
+                {
+                    sqlCommand.CommandText = @"
+                        SELECT question_id
+                              ,SUM(CAST(answered_correctly AS decimal)) / COUNT(question_id) as percent_correct
+                          FROM question_response as qr
+                          INNER JOIN quiz_attempt AS qa ON qa.id = qr.quiz_attempt_id
+                          WHERE qa.quiz_id = @quiz_id
+                          GROUP BY question_id
+                    ";
+                    sqlCommand.Parameters.AddWithValue(parameterName: "quiz_id", value: quizId);
+
+                    using (var sqlReader = sqlCommand.ExecuteReader())
+                    {
+                        while (sqlReader.Read())
+                        {
+                            AverageQuestionScore.Add((long)sqlReader[name: "question_id"], (decimal)sqlReader[name: "percent_correct"]);
+                        }
+                    }
+                }
+            }
+            return AverageQuestionScore;
+        }
     }
 }
