@@ -1,0 +1,28 @@
+﻿@model AdmininaterViewModel
+@{
+    ViewData["Title"] = "Welcome Nater";
+}
+
+<div class="text-center mb-5">
+    <h1 class="display-4">Dashboard</h1>
+</div>
+
+<form method="POST">
+<label>Username Search:</label>
+@Html.TextBoxFor(x => x.SearchedUsername, new{@id = "txtSearch", @class = "form-control mb-3", @onkeyup = "searchUser()", @placeholder = "Username"})
+</form>
+
+<div>
+    <table id="result-table" class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <td>Id</td>
+                <td>Username</td>
+                <td>Email</td>
+                <td>Created Timestamp</td>
+                <td>Admininater?</td>
+            </tr>
+        </thead>
+        <partial name="_AdmininaterTable" model="Model.AllUserInfo" />
+    </table>
+</div>

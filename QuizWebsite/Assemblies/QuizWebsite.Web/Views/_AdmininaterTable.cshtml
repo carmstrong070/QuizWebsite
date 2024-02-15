@@ -1,0 +1,14 @@
+﻿@model List<User>
+
+<tbody>
+    @foreach (var user in Model)
+    {
+        <tr>
+            <td>@user.Id</td>
+            <td>@user.Username</td>
+            <td>@user.Email</td>
+            <td>@user.CreatedTimestamp</td>
+            <td>@user.IsAdmininater</td>
+        </tr>
+    }
+</tbody>

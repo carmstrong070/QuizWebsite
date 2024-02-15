@@ -1,4 +1,15 @@
-﻿// Please see documentation at https://learn.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
+﻿function searchUser(event) {
+    let params = { searchedUser: document.getElementById("txtSearch").value };
+    $.ajax({
+        url: "/UpdateTable",
+        type: "POST",
+        dataType: "html",
+        data: params,
+        success: function (data, textStatus, jqXHR) {
+            $("#result-table tbody").replaceWith(data)
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
 
-// Write your JavaScript code.
+        }
+    });
+}
