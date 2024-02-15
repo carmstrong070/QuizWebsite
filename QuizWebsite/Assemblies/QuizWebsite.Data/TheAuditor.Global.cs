@@ -99,5 +99,27 @@ namespace QuizWebsite.Data
             }
             return AverageQuestionScore;
         }
+
+        public static int GetTotalQuizAttempts(long quizId)
+        {
+            var connectionString = ConnectionBucket.ConnectionString;
+
+            using (var sqlConnection = new SqlConnection(connectionString))
+            {
+                sqlConnection.Open();
+                using (var sqlCommand = sqlConnection.CreateCommand())
+                {
+                    sqlCommand.CommandText = @"
+                        SELECT COUNT(quiz_id) AS total_completions
+                          FROM [QuizWebsite].[dbo].[quiz_attempt]
+                          WHERE quiz_id = @quiz_id
+                    ";
+                    sqlCommand.Parameters.AddWithValue(parameterName: "quiz_id", value: quizId);
+
+                    var totalCompletions = (int)sqlCommand.ExecuteScalar();
+                    return totalCompletions;
+                }
+            }
+        }
     }
 }

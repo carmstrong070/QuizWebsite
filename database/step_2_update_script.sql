@@ -21,3 +21,7 @@ ADD created_timestamp DATETIME NOT NULL DEFAULT GETDATE()
 	,ban_hammer_timestamp DATETIME
 	,hammered_by_user_id BIGINT;
 GO
+
+ALTER TABLE [user]
+ADD is_nater BIT NOT NULL DEFAULT 0
+GO

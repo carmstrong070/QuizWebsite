@@ -25,6 +25,7 @@
                         {
                             <span>Average Completion Time: None</span>
                         }
+                    Total Attempts: @(Model.TotalAttempts[Model.Quizzes[i].QuizId])
                     </p>
                 <div class="text-center">
                         <a class="btn btn-primary" href="@Url.Action("Quiz", "Quiz", new { quizId = Model.Quizzes[i].QuizId})">Take it!</a>

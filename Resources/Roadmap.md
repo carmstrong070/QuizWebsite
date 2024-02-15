@@ -75,7 +75,7 @@
 - [x] 7.1d Latest quiz taken
 - [x] 7.2a Display global stats for overall score after quiz completion
 - [x] 7.2b Display global stats for each question after quiz completion
-- [ ] 7.3 Display stats in quiz portal (i.e., Number of completions)
+- [x] 7.3 Display stats in quiz portal (i.e., Number of completions)
 
 ### Section 8 - Admins
 

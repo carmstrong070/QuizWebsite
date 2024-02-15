@@ -7,5 +7,7 @@ namespace QuizWebsite.Web.Models
         public List<Quiz> Quizzes { get; set; }
 
         public Dictionary<long, TimeSpan?> AverageCompletionTimes { get; set; }
+
+        public Dictionary<long, int> TotalAttempts { get; set; }
     }
 }

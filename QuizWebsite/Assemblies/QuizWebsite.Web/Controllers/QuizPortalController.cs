@@ -14,6 +14,7 @@ namespace QuizWebsite.Web.Controllers
             var vm = new QuizPortalViewModel();
             vm.Quizzes = QuizHandler.GetQuizList();
             vm.AverageCompletionTimes = vm.Quizzes.ToDictionary(x => x.QuizId, x => TheAuditor.GetAverageCompletionTime(x.QuizId));
+            vm.TotalAttempts = vm.Quizzes.ToDictionary(x => x.QuizId, x => TheAuditor.GetTotalQuizAttempts(x.QuizId));
             return View(vm);
         }
     }
