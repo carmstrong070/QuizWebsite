@@ -82,9 +82,10 @@
 - [x] 8.0 Create Admin role
 - [x] 8.1 Create view to see all users
 - [x] 8.1a Make a sweet username search filter for user table
-- [ ] 8.2 Create view to edit user
-- [ ] 8.3 Data layer queries to view/edit users
-- [ ] 8.4 Lock down admin pages
+- [x] 8.2 Create view to edit user
+- [x] 8.3 Data layer queries to view/edit users
+- [ ] 8.4 Wire up privileged user edit modal "save changes" button
+- [ ] 8.5 Lock down admin pages
 
 ### Section 9 - Final Boss
 
