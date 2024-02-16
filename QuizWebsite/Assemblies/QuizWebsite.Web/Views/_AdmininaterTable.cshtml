@@ -4,6 +4,9 @@
     @foreach (var user in Model)
     {
         <tr>
+            <td class="d-flex justify-content-center">
+                <button type="button" onclick="selectUser(@user.Id)" class="btn btn-primary">Edit Account</button>
+            </td>
             <td>@user.Id</td>
             <td>@user.Username</td>
             <td>@user.Email</td>

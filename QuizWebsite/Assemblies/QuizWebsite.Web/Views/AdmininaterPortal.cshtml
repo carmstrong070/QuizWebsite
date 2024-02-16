@@ -8,14 +8,15 @@
 </div>
 
 <form method="POST">
-<label>Username Search:</label>
-@Html.TextBoxFor(x => x.SearchedUsername, new{@id = "txtSearch", @class = "form-control mb-3", @onkeyup = "searchUser()", @placeholder = "Username"})
+    <label>Username Search:</label>
+    @Html.TextBoxFor(x => x.SearchedUsername, new { @id = "txtSearch", @class = "form-control mb-3", @onkeyup = "searchUser()", @placeholder = "Username" })
 </form>
 
 <div>
     <table id="result-table" class="table table-bordered table-striped">
         <thead>
             <tr>
+                <td></td>
                 <td>Id</td>
                 <td>Username</td>
                 <td>Email</td>
@@ -25,4 +26,7 @@
         </thead>
         <partial name="_AdmininaterTable" model="Model.AllUserInfo" />
     </table>
+</div>
+<div id="edit-container">
+
 </div>

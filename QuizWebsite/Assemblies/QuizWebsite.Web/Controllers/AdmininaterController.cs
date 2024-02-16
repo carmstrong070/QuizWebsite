@@ -33,5 +33,21 @@ namespace QuizWebsite.Web.Controllers
             var userList = AdmininaterTools.GetAllUsers(searchedUser);
             return PartialView("_AdmininaterTable", userList);
         }
+
+        [HttpPost]
+        [Route("SelectUser")]
+        public IActionResult SelectUser(long id)
+        {
+            var privilegedUserViewModel = new AdmininaterViewModel.PrivilegedUserViewModel();
+            var selectedUser = AdmininaterTools.GetUserById(id);
+            privilegedUserViewModel.Id = id;
+            privilegedUserViewModel.Username = selectedUser.Username;
+            privilegedUserViewModel.Email = selectedUser.Email;
+            privilegedUserViewModel.CreatedTimestamp = selectedUser.CreatedTimestamp;
+            privilegedUserViewModel.IsAdmininater = selectedUser.IsAdmininater;
+
+            return PartialView("_PrivilegedUserEditModal", privilegedUserViewModel);
+
+        }
     }
 }

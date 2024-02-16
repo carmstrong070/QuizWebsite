@@ -47,5 +47,43 @@ namespace QuizWebsite.Data
             }
             return users;
         }
+
+        public static User GetUserById(long id)
+        {
+            var connectionString = ConnectionBucket.ConnectionString;
+
+            using (var sqlConnection = new SqlConnection(connectionString))
+            {
+                sqlConnection.Open();
+                using (var sqlCommand = sqlConnection.CreateCommand())
+                {
+                    sqlCommand.CommandText = @"
+                        SELECT username
+                               ,email
+                               ,created_timestamp
+                               ,is_admininater 
+                            FROM [user]
+                            WHERE id = @id;
+                    ";
+                    sqlCommand.Parameters.AddWithValue(parameterName: "id", value: id);
+
+                    using (var sqlReader = sqlCommand.ExecuteReader())
+                    {
+                        if (sqlReader.Read())
+                        {
+                            var user = new User();
+                            user.Id = id;
+                            user.Username = sqlReader[name: "username"].ToString();
+                            user.Email = sqlReader[name: "email"].ToString();
+                            user.CreatedTimestamp = (DateTime)sqlReader[name: "created_timestamp"];
+                            user.IsAdmininater = (bool)sqlReader[name: "is_admininater"];
+                            return user;
+                        }
+                        else
+                            return null;
+                    }
+                }
+            }
+        }
     }
 }
