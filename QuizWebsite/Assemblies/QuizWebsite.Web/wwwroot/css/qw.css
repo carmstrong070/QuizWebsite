@@ -4,6 +4,25 @@
 body {
   min-height: 100%;
 }
+#page-content {
+  padding-top: 56px;
+}
+#page-content > .container:first-child {
+  margin-top: 1rem;
+}
+.navbar-brand {
+  padding: 0;
+}
+.site-title {
+  font-size: 1.4rem;
+  line-height: 1.4rem;
+  font-weight: bold;
+  text-shadow: 3px 3px 2px rgba(0, 0, 0, 0.25);
+}
+.nate-icon {
+  border-radius: 8px;
+  box-shadow: 3px 3px 2px rgba(0, 0, 0, 0.25);
+}
 .bg-dot-grid {
   background: url('../content/images/backgrounds/pattern.png') repeat center fixed;
 }
@@ -59,7 +78,7 @@ body {
   }
 }
 @media (min-width: 420px) {
-  #page-content {
+  #login-page-content {
     background: url("../content/images/backgrounds/divine-background-optimized.jpg") no-repeat center center;
     background-size: cover;
   }

@@ -1,0 +1,218 @@
+﻿<!DOCTYPE html>
+<html lang="en" class="h-100" data-bs-theme="dark">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+    <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap-united.min.css" />
+    <link rel="stylesheet" href="lib/fontawesome/dist/css/svg-with-js.min.css" />
+    <link rel="stylesheet" href="css/qw.css" />
+    <style>
+        #page-content {
+            background: url("content/images/backgrounds/star-background-optimized.jpg") no-repeat center center;
+            background-size: cover;
+        }
+    </style>
+</head>
+<body class="d-flex flex-column">
+    <div class="navbar navbar-expand-lg fixed-top bg-dark">
+        <div class="container">
+            <a href="/MockupQuizPortal.html" class="navbar-brand">
+                <img src="content/images/logos/nate-icon.png" class="nate-icon me-2" width="40" height="40" />
+                <span class="site-title text-uppercase">Quiz Website</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div id="navbarResponsive" class="collapse navbar-collapse">
+                <ul class="navbar-nav ms-md-auto">
+                    <li class="nav-item py-2 py-lg-1 col-12 col-lg-auto">
+                        <hr class="d-lg-none my-2 text-white-50">
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Random</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">About</a>
+                    </li>
+                    <li class="nav-item py-2 py-lg-1 col-12 col-lg-auto">
+                        <div class="vr d-none d-lg-flex h-100 mx-lg-2 text-white"></div>
+                        <hr class="d-lg-none my-2 text-white-50">
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" id="download">Account</a>
+                        <div class="dropdown-menu" aria-labelledby="download">
+                            <a class="dropdown-item" href="#"><i class="fa-solid fa-chart-column fa-fw me-2"></i>Stats</a>
+                            <a class="dropdown-item" href="#"><i class="fa-solid fa-user fa-fw me-2"></i>Profile</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#"><i class="fa-solid fa-right-from-bracket fa-fw me-2"></i>Sign Out</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <main id="page-content" role="main" class="d-flex flex-column flex-grow-1">
+        <div class="p-5 text-white">
+            <div class="container text-center">
+                <h1 class="display-1">Quiz Portal</h1>
+                <h3>We've got <strong>256</strong> quizzes.</h3>
+            </div>
+        </div>
+        <div class="container">
+            <div class="mb-3">
+                <h3 class="text-center w-75 m-auto">
+                    <span class="badge rounded-pill bg-dark opacity-50 mb-2"><i class="fa-solid fa-medal fa-fw me-2"></i>Sports</span>
+                    <span class="badge rounded-pill bg-dark mb-2"><i class="fa-solid fa-map-location-dot fa-fw me-2"></i>Maps</span>
+                    <span class="badge rounded-pill bg-dark opacity-50 mb-2"><i class="fa-solid fa-music fa-fw me-2"></i>Music</span>
+                    <span class="badge rounded-pill bg-dark mb-2"><i class="fa-solid fa-film fa-fw me-2"></i>Movies</span>
+                    <span class="badge rounded-pill bg-dark opacity-50 mb-2"><i class="fa-solid fa-tv fa-fw me-2"></i>TV Shows</span>
+                    <span class="badge rounded-pill bg-dark opacity-50 mb-2"><i class="fa-solid fa-crown fa-fw me-2"></i>History</span>
+                    <span class="badge rounded-pill bg-dark opacity-50 mb-2"><i class="fa-solid fa-book fa-fw me-2"></i>Literature</span>
+                    <span class="badge rounded-pill bg-dark opacity-50 mb-2"><i class="fa-solid fa-atom fa-fw me-2"></i>Science</span>
+                    <span class="badge rounded-pill bg-dark mb-2"><i class="fa-solid fa-gamepad fa-fw me-2"></i>Gaming</span>
+                    <span class="badge rounded-pill bg-dark opacity-50 mb-2"><i class="fa-solid fa-drumstick-bite fa-fw me-2"></i>Black</span>
+                    <span class="badge rounded-pill bg-dark opacity-50 mb-2"><i class="fa-solid fa-calendar-days fa-fw me-2"></i>Holidays</span>
+                </h3>
+            </div>
+            <div class="input-group mb-3">
+                <input type="text" class="form-control form-control-lg" placeholder="Search..." />
+                <button class="btn btn-dark" type="button"><i class="fa-solid fa-magnifying-glass me-2"></i>Gimme Dat</button>
+            </div>
+            <div class="text-end mb-3">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-link dropdown-toggle p-0" data-bs-toggle="dropdown" aria-expanded="false">
+                        Sort
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Title</a></li>
+                        <li><a class="dropdown-item" href="#">Time Limit</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="#">Ascending</a></li>
+                        <li><a class="dropdown-item" href="#">Descending</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <hr class="invisible my-5" />
+
+            <div class="row">
+                <div class="col-xxl-3 col-xl-4 col-md-6 d-md-flex align-items-stretch mb-3">
+                    <div class="card w-100 h-100 shadow">
+                        <div class="card-body">
+                            <h5 class="card-title">U.S. State Capitals</h5>
+                            <h6 class="card-subtitle mb-2 text-muted clearfix">
+                                <span class="float-start">by <strong>Hank</strong></span>
+                                <span class="float-end"><i class="fa-regular fa-clock me-2"></i><i class="fa-solid fa-infinity"></i></span>
+                            </h6>
+                            <hr />
+                            <p class="card-text">The indians died for this.</p>
+                            <div class="d-grid d-sm-block text-sm-end">
+                                <a href="#" class="btn btn-dark">Start</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xxl-3 col-xl-4 col-md-6 d-md-flex align-items-stretch mb-3">
+                    <div class="card w-100 h-100 shadow">
+                        <div class="card-body">
+                            <h5 class="card-title">The Countries of the World</h5>
+                            <h6 class="card-subtitle mb-2 text-muted clearfix">
+                                <span class="float-start">by <strong>FetusEatus</strong></span>
+                                <span class="float-end"><i class="fa-regular fa-clock me-2"></i>5 mins.</span>
+                            </h6>
+                            <hr />
+                            <p class="card-text">Can you name the countries of the world?</p>
+                            <div class="d-grid d-sm-block text-sm-end">
+                                <a href="#" class="btn btn-dark">Start</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xxl-3 col-xl-4 col-md-6 d-md-flex align-items-stretch mb-3">
+                    <div class="card w-100 h-100 shadow">
+                        <div class="card-body">
+                            <h5 class="card-title">Marvel Movie Ratings</h5>
+                            <h6 class="card-subtitle mb-2 text-muted clearfix">
+                                <span class="float-start">by <strong>StressameStreet</strong></span>
+                                <span class="float-end"><i class="fa-regular fa-clock me-2"></i>10 mins.</span>
+                            </h6>
+                            <hr />
+                            <p class="card-text">Guess the IMDB ratings of the MCU.</p>
+                            <div class="d-grid d-sm-block text-sm-end">
+                                <a href="#" class="btn btn-dark">Start</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xxl-3 col-xl-4 col-md-6 d-md-flex align-items-stretch mb-3">
+                    <div class="card w-100 h-100 shadow">
+                        <div class="card-body">
+                            <h5 class="card-title">Disney Movie Ratings</h5>
+                            <h6 class="card-subtitle mb-2 text-muted clearfix">
+                                <span class="float-start">by <strong>StressameStreet</strong></span>
+                                <span class="float-end"><i class="fa-regular fa-clock me-2"></i>10 mins.</span>
+                            </h6>
+                            <hr />
+                            <p class="card-text">Guess the IMDB ratings of the Rat.</p>
+                            <div class="d-grid d-sm-block text-sm-end">
+                                <a href="#" class="btn btn-dark">Start</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xxl-3 col-xl-4 col-md-6 d-md-flex align-items-stretch mb-3">
+                    <div class="card w-100 h-100 shadow">
+                        <div class="card-body">
+                            <h5 class="card-title">SSBM Characters</h5>
+                            <h6 class="card-subtitle mb-2 text-muted clearfix">
+                                <span class="float-start">by <strong>internet_whale</strong></span>
+                                <span class="float-end"><i class="fa-regular fa-clock me-2"></i>3 mins.</span>
+                            </h6>
+                            <hr />
+                            <p class="card-text">Who's that Pokemon?</p>
+                            <div class="d-grid d-sm-block text-sm-end">
+                                <a href="#" class="btn btn-dark">Start</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xxl-3 col-xl-4 col-md-6 d-md-flex align-items-stretch mb-3">
+                    <div class="card w-100 h-100 shadow">
+                        <div class="card-body">
+                            <h5 class="card-title">Gaming Quotes</h5>
+                            <h6 class="card-subtitle mb-2 text-muted clearfix">
+                                <span class="float-start">by <strong>Chick3nSlut</strong></span>
+                                <span class="float-end"><i class="fa-regular fa-clock me-2"></i><i class="fa-solid fa-infinity"></i></span>
+                            </h6>
+                            <hr />
+                            <p class="card-text">I used to be an adventurer like you.</p>
+                            <div class="d-grid d-sm-block text-sm-end">
+                                <a href="#" class="btn btn-dark">Start</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer class="footer mt-auto py-3 bg-dark">
+        <div class="container-xl">
+            <div class="d-flex align-items-stretch justify-content-center">
+                <p class="small mb-0">
+                    Copyright © 2024.
+                    <br class="d-block d-sm-none">
+                    <u class="text-light">The Nate Company</u>.
+                    <br class="d-block d-md-none">
+                    All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+    <script src="lib/jquery/dist/jquery.min.js"></script>
+    <script src="lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/fontawesome/dist/js/fontawesome-all.min.js"></script>
+    <script src="js/site.js" asp-append-version="true"></script>
+</body>
+</html>
