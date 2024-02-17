@@ -118,3 +118,15 @@ These are still in planning...
 - Average score per attempt
 - Fastest Perfect Score
 - Biggest dipshit (most incorrect and slowest time)
+
+## Deployment planning
+
+Basic
+- SQL DB hosting
+	- DB backup schedule?
+- IIS MVC hosting
+	- Site admins?
+
+For the Internet
+- DNS Licensing
+- Google SEO
