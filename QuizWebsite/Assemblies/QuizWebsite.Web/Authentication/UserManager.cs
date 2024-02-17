@@ -9,7 +9,7 @@ namespace QuizWebsite.Web.Authentication
 {
     public class UserManager : IUserManager
     {
-        public SignUpResult SignUp(string username, string email, string password)
+        public SignUpResult SignUp(string username, string email, string password, bool isAdmininater = false)
         {
 
             if (UserHandler.CheckUserExists(username, email))
@@ -19,7 +19,7 @@ namespace QuizWebsite.Web.Authentication
             string salt = PasswordHasher.GenerateNewSalt();
             string hashedPassword = PasswordHasher.ComputeHash(password, Encoding.ASCII.GetBytes(salt));
 
-            var userId = UserHandler.CreateUser(username, email, hashedPassword, salt);
+            var userId = UserHandler.CreateUser(username, email, hashedPassword, salt, isAdmininater);
 
             var user = new UserAuthenticationModel();
             user.Username = username;

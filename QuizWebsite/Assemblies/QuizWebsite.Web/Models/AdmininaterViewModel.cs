@@ -8,8 +8,6 @@ namespace QuizWebsite.Web.Models
 
         public string SearchedUsername { get; set; }
 
-        public bool ShowEditUserModal { get; set; }
-
         public PrivilegedUserViewModel SelectedUser { get; set; }
 
         public class PrivilegedUserViewModel

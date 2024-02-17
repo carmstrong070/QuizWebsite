@@ -6,7 +6,7 @@ namespace QuizWebsite.Data
     public static class UserHandler
     {
 
-        public static long CreateUser(string username, string email, string hashedPassword, string salt)
+        public static long CreateUser(string username, string email, string hashedPassword, string salt, bool isAdmininater)
         {
             var connectionString = ConnectionBucket.ConnectionString;
 
@@ -20,18 +20,21 @@ namespace QuizWebsite.Data
                                (username
                                ,hashed_password
                                ,email
-                               ,salt)
+                               ,salt
+                               ,is_admininater)
                          OUTPUT inserted.id
                          VALUES
                                (@username
                                ,@hashed_password
                                ,@email
-                               ,@salt)
+                               ,@salt
+                               ,@is_admininater)
                     ";
                     sqlCommand.Parameters.AddWithValue(parameterName: "username", value: username);
                     sqlCommand.Parameters.AddWithValue(parameterName: "hashed_password", value: hashedPassword);
                     sqlCommand.Parameters.AddWithValue(parameterName: "email", value: email);
                     sqlCommand.Parameters.AddWithValue(parameterName: "salt", value: salt);
+                    sqlCommand.Parameters.AddWithValue(parameterName: "is_admininater", value: isAdmininater);
 
                     var userId = (long)sqlCommand.ExecuteScalar();
                     return userId;

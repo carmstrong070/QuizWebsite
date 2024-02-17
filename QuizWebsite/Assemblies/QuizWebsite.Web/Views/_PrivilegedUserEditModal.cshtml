@@ -9,26 +9,24 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form method="post">
                     <div class="form-outline mb-4">
-                        @Html.TextBoxFor(m => m.Username, new { @class = "form-control" })
+                        @Html.TextBoxFor(m => m.Username, new { @class = "form-control", @id = "edit-username" })
                         <label class="form-label" for="form2Example1">Username</label>
                     </div>
                     <div class="form-outline mb-4">
-                        @Html.TextBoxFor(m => m.Password, new { @class = "form-control" })
-                        <label class="form-label" for="form2Example2">Password</label>
+                        @Html.TextBoxFor(m => m.Password, new { @class = "form-control", @id = "edit-password" })
+                        <label class="form-label" for="form2Example2">New Password</label>
                     </div>
                     <div class="form-outline mb-4">
-                        @Html.TextBoxFor(m => m.Email, new { @type = "email", @class = "form-control" })
+                        @Html.TextBoxFor(m => m.Email, new { @type = "email", @class = "form-control", @id="edit-email" })
                         <label class="form-label" for="form2Example2">Email</label>
                     </div>
                     <div>Id: @Model.Id</div>
                     <div>Admininater Status: @Model.IsAdmininater</div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary">Save Changes</button>
-                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                    <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" onclick="saveUserChanges(@Model.Id)">Save Changes</button>
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
+                    </div>
             </div>
         </div>
     </div>

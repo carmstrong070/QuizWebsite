@@ -2,6 +2,7 @@
 using QuizWebsite.Data;
 using QuizWebsite.Web.Authentication;
 using QuizWebsite.Web.Models;
+using System.Text;
 
 namespace QuizWebsite.Web.Controllers
 {
@@ -48,6 +49,53 @@ namespace QuizWebsite.Web.Controllers
 
             return PartialView("_PrivilegedUserEditModal", privilegedUserViewModel);
 
+        }
+
+        [HttpPost]
+        [Route("SaveUserChanges")]
+        public IActionResult SaveUserChanges(long id, string username, string email, string password)
+        {
+            var user = AdmininaterTools.GetUserById(id);
+            if (user.IsAdmininater)
+                return Json(false);
+
+            if (string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(username))
+                return Json(false);
+
+            if (UserHandler.CheckUserExists(username, email, id))
+                return Json(false);
+            UserHandler.EditUserDetails(id, email, username);
+
+            if (password != null)
+            {
+                var salt = PasswordHasher.GenerateNewSalt();
+                var hashedPassword = PasswordHasher.ComputeHash(password, Encoding.ASCII.GetBytes(salt));
+                UserHandler.UpdatePassword(UserId.Value, hashedPassword, salt);
+                return Json(true);
+            }
+            return Json(true);
+        }
+
+        [HttpPost]
+        [Route("CreateNewUser")]
+        public IActionResult CreateNewUser(string username, string email, string password, bool isAdmininater)
+        {
+            if (email == null || username == null || password == null)
+                return Json(false);
+
+            SignUpResult validateResult = AuthUserManager.SignUp(username, email, password, isAdmininater);
+
+            if (validateResult.User == null)
+                return Json(false);
+
+            return Json(true);
+        }
+
+        [HttpGet]
+        [Route("ShowUserModal")]
+        public IActionResult ShowUserModal()
+        {
+            return PartialView("_PrivilegedUserAddModal");
         }
     }
 }

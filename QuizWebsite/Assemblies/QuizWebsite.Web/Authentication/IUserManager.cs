@@ -58,7 +58,7 @@ namespace QuizWebsite.Web.Authentication
 
     public interface IUserManager
     {
-        SignUpResult SignUp(string username, string email, string password);
+        SignUpResult SignUp(string username, string email, string password, bool isAdmininater = false);
         //void AddToRole(User user, string roleCode);
         //void AddToRole(User user, Role role);
         //void RemoveFromRole(User user, string roleCode);

@@ -7,6 +7,7 @@
     <h1 class="display-4">Dashboard</h1>
 </div>
 
+<button type="button" class="btn btn-primary mb-4" onclick="showUserModal()">New User</button>
 <form method="POST">
     <label>Username Search:</label>
     @Html.TextBoxFor(x => x.SearchedUsername, new { @id = "txtSearch", @class = "form-control mb-3", @onkeyup = "searchUser()", @placeholder = "Username" })
@@ -27,6 +28,5 @@
         <partial name="_AdmininaterTable" model="Model.AllUserInfo" />
     </table>
 </div>
-<div id="edit-container">
-
-</div>
+<div id="edit-container"></div>
+<div id="add-container"></div>
