@@ -9,6 +9,9 @@ namespace QuizWebsite.Web.Authentication
 {
     public class UserManager : IUserManager
     {
+
+        public const string IsAdmininaterRole = "admininater";
+        public const string IsPlebRole = "pleb";
         public SignUpResult SignUp(string username, string email, string password, bool isAdmininater = false)
         {
 
@@ -24,6 +27,7 @@ namespace QuizWebsite.Web.Authentication
             var user = new UserAuthenticationModel();
             user.Username = username;
             user.Id = userId;
+            user.IsAdmininater = isAdmininater;
 
             return new SignUpResult(user);
         }
@@ -114,7 +118,7 @@ namespace QuizWebsite.Web.Authentication
                     var user = UserHandler.GetUserByCredentials(email, hashedPassword);
 
                     if (user != null)
-                        return new ValidateResult(success: true, user: new UserAuthenticationModel() { Id = user.Id, Username = user.Username });
+                        return new ValidateResult(success: true, user: new UserAuthenticationModel() { Id = user.Id, Username = user.Username, IsAdmininater = user.IsAdmininater });
                 }
             }
 
@@ -171,7 +175,7 @@ namespace QuizWebsite.Web.Authentication
             if (user == null)
                 return null;
 
-            return new UserAuthenticationModel() { Id = user.Id, Username = user.Username };
+            return new UserAuthenticationModel() { Id = user.Id, Username = user.Username, IsAdmininater = user.IsAdmininater };
         }
 
         private IEnumerable<Claim> GetUserClaims(UserAuthenticationModel user)
@@ -181,9 +185,12 @@ namespace QuizWebsite.Web.Authentication
             claims.Add(new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()));
             claims.Add(new Claim(ClaimTypes.Name, user.Username));
 
-            //TODO: Make an admin role
+
             var userRoleClaims = new List<Claim>();
-            userRoleClaims.Add(new Claim(ClaimTypes.Role, "NormalGuy"));
+            if (user.IsAdmininater)
+                userRoleClaims.Add(new Claim(ClaimTypes.Role, IsAdmininaterRole));
+            else
+                userRoleClaims.Add(new Claim(ClaimTypes.Role, IsPlebRole));
             claims.AddRange(userRoleClaims);
 
             return claims;

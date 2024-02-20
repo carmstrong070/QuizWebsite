@@ -14,9 +14,12 @@
             <li class="nav-item">
                 <a class="nav-link text-dark" asp-area="" asp-controller="UserStats" asp-action="UserStats">User Stats</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link text-dark" asp-area="" asp-controller="Admininater" asp-action="AdmininaterPortal">Admininater Portal</a>
-            </li>
+            @if (this.User.IsAdmininater())
+            {
+                <li class="nav-item">
+                    <a class="nav-link text-dark" asp-area="" asp-controller="Admininater" asp-action="AdmininaterPortal">Admininater Portal</a>
+                </li>
+            }
         }
         else
         {

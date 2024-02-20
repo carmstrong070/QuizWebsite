@@ -5,6 +5,8 @@
         public long Id { get; set; }
         public string Username { get; set; }
 
+        public bool IsAdmininater { get; set; }
+
         public virtual ICollection<Credential> Credentials { get; set; }
     }
 }

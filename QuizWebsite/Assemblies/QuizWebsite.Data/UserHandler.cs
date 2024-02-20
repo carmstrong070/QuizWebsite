@@ -74,7 +74,7 @@ namespace QuizWebsite.Data
                 using (var sqlCommand = sqlConnection.CreateCommand())
                 {
                     sqlCommand.CommandText = @"
-                        SELECT id, username, email
+                        SELECT id, username, email, is_admininater
                             FROM [user]
                             WHERE email = @email AND
                             hashed_password = @hashed_password;
@@ -90,6 +90,7 @@ namespace QuizWebsite.Data
                             user.Id = (long)sqlReader[name: "id"];
                             user.Username = sqlReader[name: "username"].ToString();
                             user.Email = sqlReader[name: "email"].ToString();
+                            user.IsAdmininater = (bool)sqlReader[name: "is_admininater"];
                             return user;
                         }
                         else
@@ -135,7 +136,7 @@ namespace QuizWebsite.Data
                 using (var sqlCommand = sqlConnection.CreateCommand())
                 {
                     sqlCommand.CommandText = @"
-                        SELECT id, username, email
+                        SELECT id, username, email, is_admininater
                             FROM [user]
                             WHERE id = @id;
                     ";
@@ -149,6 +150,7 @@ namespace QuizWebsite.Data
                             user.Id = (long)sqlReader[name: "id"];
                             user.Username = sqlReader[name: "username"].ToString();
                             user.Email = sqlReader[name: "email"].ToString();
+                            user.IsAdmininater = (bool)sqlReader[name: "is_admininater"];
                             return user;
                         }
                         else

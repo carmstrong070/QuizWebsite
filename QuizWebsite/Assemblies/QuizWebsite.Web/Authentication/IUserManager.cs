@@ -2,6 +2,8 @@
 
 namespace QuizWebsite.Web.Authentication
 {
+
+
     public enum SignUpResultError
     {
         UserAlreadyExists

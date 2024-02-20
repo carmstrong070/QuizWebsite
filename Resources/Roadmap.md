@@ -85,7 +85,7 @@
 - [x] 8.2 Create view to edit user
 - [x] 8.3 Data layer queries to view/edit users
 - [x] 8.4 Wire up privileged user edit modal "save changes" button
-- [ ] 8.5 Lock down admin pages
+- [x] 8.5 Lock down admin pages
 
 ### Section 9 - Final Boss
 
@@ -122,11 +122,13 @@ These are still in planning...
 ## Deployment planning
 
 Basic
+
 - SQL DB hosting
-	- DB backup schedule?
+  - DB backup schedule?
 - IIS MVC hosting
-	- Site admins?
+  - Site admins?
 
 For the Internet
+
 - DNS Licensing
 - Google SEO
