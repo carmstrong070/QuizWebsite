@@ -99,5 +99,24 @@ namespace QuizWebsite.Web.Controllers
         {
             return PartialView("_PrivilegedUserAddModal");
         }
+
+        [HttpPost]
+        [Route("Ban")]
+        public IActionResult Ban(long id)
+        {
+            var admininaterId = UserId.Value;
+            if (id == admininaterId)
+                return Json(false);
+            AdmininaterTools.Ban(id, admininaterId);
+            return Json(true);
+        }
+
+        [HttpPost]
+        [Route("Unban")]
+        public IActionResult Unban(long id)
+        {
+            AdmininaterTools.Unban(id);
+            return Json(true);
+        }
     }
 }

@@ -11,5 +11,11 @@
         public DateTime CreatedTimestamp { get; set; }
 
         public bool IsAdmininater { get; set; }
+
+        public bool GotBanHammer { get; set; }
+
+        public DateTime? HammerTimestamp { get; set; }
+
+        public long? HammeredByUserId { get; set; }
     }
 }

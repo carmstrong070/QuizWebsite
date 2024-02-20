@@ -23,6 +23,7 @@ namespace QuizWebsite.Web.Models
             public DateTime CreatedTimestamp { get; set; }
 
             public bool IsAdmininater { get; set; }
+
         }
 
     }

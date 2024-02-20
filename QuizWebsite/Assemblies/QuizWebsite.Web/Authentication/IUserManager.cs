@@ -23,7 +23,8 @@ namespace QuizWebsite.Web.Authentication
 
     public enum ValidateResultError
     {
-        InvalidCredentials
+        InvalidCredentials,
+        GotBanned
     }
 
     public class ValidateResult

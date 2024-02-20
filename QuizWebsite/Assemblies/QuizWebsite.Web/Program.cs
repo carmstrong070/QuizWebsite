@@ -23,7 +23,7 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
         options.Cookie.Name = configuration.GetSection("Customizable").GetSection("AuthenticationCookieName").Value;
         options.ExpireTimeSpan = TimeSpan.FromMinutes(double.Parse(configuration.GetSection("Customizable").GetSection("CookieTimeOutDurationInMinutes").Value));
         options.SlidingExpiration = true;
-        options.AccessDeniedPath = "/Forbidden/"; //TODO: Figure out the actual path we want
+        options.AccessDeniedPath = "/Forbidden/";
         options.LoginPath = "/";
     });
 builder.Services.AddScoped<IUserManager, UserManager>();

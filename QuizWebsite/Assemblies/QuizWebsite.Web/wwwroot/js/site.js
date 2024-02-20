@@ -101,6 +101,40 @@ function showUserModal() {
     });
 }
 
+function banUser(id) {
+    let params = {
+        id: id
+    };
+    $.ajax({
+        url: "/Ban",
+        type: "POST",
+        dataType: "html",
+        data: params,
+        success: function (data, textStatus, jqXHR) {
+            searchUser()
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+        }
+    });
+}
+
+function unbanUser(id) {
+    let params = {
+        id: id
+    };
+    $.ajax({
+        url: "/Unban",
+        type: "POST",
+        dataType: "html",
+        data: params,
+        success: function (data, textStatus, jqXHR) {
+            searchUser()
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+        }
+    });
+}
+
 var clockInterval;
 var clockStartTime;
 var $clock;
@@ -110,7 +144,7 @@ function startClock(elementSelector) {
 
     if ($clock.length === 0)
         return;
-        
+
     clockStartTime = new Date();
 
     clockInterval = setInterval(function () {

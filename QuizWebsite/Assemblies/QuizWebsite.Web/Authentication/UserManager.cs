@@ -118,7 +118,11 @@ namespace QuizWebsite.Web.Authentication
                     var user = UserHandler.GetUserByCredentials(email, hashedPassword);
 
                     if (user != null)
+                    {
+                        if (user.GotBanHammer)
+                            return new ValidateResult(success: false, error: ValidateResultError.GotBanned);
                         return new ValidateResult(success: true, user: new UserAuthenticationModel() { Id = user.Id, Username = user.Username, IsAdmininater = user.IsAdmininater });
+                    }
                 }
             }
 

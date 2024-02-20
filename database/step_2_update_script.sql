@@ -25,3 +25,7 @@ GO
 ALTER TABLE [user]
 ADD is_admininater BIT NOT NULL DEFAULT 0
 GO
+
+ALTER TABLE [user]
+CHANGE ban_hammer_timestamp hammer_timestamp DATETIME
+GO

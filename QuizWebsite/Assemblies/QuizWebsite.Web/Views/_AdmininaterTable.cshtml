@@ -3,15 +3,31 @@
 <tbody>
     @foreach (var user in Model)
     {
+        bool iAmTheGuy = user.Id == this.User.GetUserId();
         <tr>
             <td class="d-flex justify-content-center">
+
+                    @if (user.GotBanHammer)
+                    {
+                    <button type="button" onclick="unbanUser(@user.Id)" class="btn btn-success" disabled="@iAmTheGuy">Unban User</button>
+                    }
+                    else
+                    {
+                    <button type="button" onclick="banUser(@user.Id)" class="btn btn-danger" disabled="@iAmTheGuy">Ban User</button>
+                    }
+
+
                 <button type="button" onclick="selectUser(@user.Id)" class="btn btn-primary">Edit User</button>
+
             </td>
             <td>@user.Id</td>
             <td>@user.Username</td>
             <td>@user.Email</td>
             <td>@user.CreatedTimestamp</td>
             <td>@user.IsAdmininater</td>
+            <td>@user.GotBanHammer</td>
+            <td>@user.HammerTimestamp</td>
+            <td>@user.HammeredByUserId</td>
         </tr>
     }
 </tbody>

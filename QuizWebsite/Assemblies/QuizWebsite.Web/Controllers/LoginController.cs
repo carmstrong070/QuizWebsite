@@ -30,6 +30,11 @@ namespace QuizWebsite.Web.Controllers
                 AuthUserManager.SignIn(this.HttpContext, validateResult.User, true);
                 return RedirectToAction("QuizPortal", "QuizPortal");
             }
+            else
+            {
+                if (validateResult.Error == ValidateResultError.GotBanned)
+                    return Redirect("https://www.youtube.com/watch?v=kav7tifmyTg");
+            }
 
             return View(vm);
         }

@@ -12,5 +12,14 @@ namespace QuizWebsite.Web.Authentication
             return claimsPrincipal.HasClaim(ClaimTypes.Role, UserManager.IsAdmininaterRole);
         }
 
+        public static long? GetUserId(this System.Security.Claims.ClaimsPrincipal claimsPrincipal)
+        {
+            if (claimsPrincipal == null || claimsPrincipal.Claims == null)
+                return null;
+            var userIdClaim = claimsPrincipal.Claims.FirstOrDefault(x => x.Type.Equals(ClaimTypes.NameIdentifier));
+            if (userIdClaim == null)
+                return null;
+            return long.Parse(userIdClaim.Value);
+        }
     }
 }
