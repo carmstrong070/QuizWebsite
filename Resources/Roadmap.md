@@ -8,6 +8,7 @@
 ## Dev Plan
 
 ### Section 1 - Proof-of-concept
+> Meet Visual Studio and SQL Management Studio.
 
 - [x] 1.1 Create C# solution
 - [x] 1.2 Mockup a quiz webpage with Razor .cshtml
@@ -18,6 +19,7 @@
 - [x] 1.7 Render mock quiz data on quiz webpage
 
 ### Section 2 - User Interactions
+> Where there is data, there are forms.
 
 - [x] 2.1 Submitting webpage
 - [x] 2.2 Bind submitted values to C# models
@@ -27,6 +29,7 @@
 - [x] 2.6 Displaying quiz score on webpage
 
 ### Section 3 - Site Navigation
+> Do you know da wae?
 
 - [x] 3.1 SQL query for all quizzes
 - [x] 3.2 Render quiz on quiz listing webpage
@@ -34,6 +37,7 @@
 - [x] 3.4 Wire up navigation to quiz listing webpage
 
 ### Section 4 - Persistent Quiz Attempts (for anon)
+> Laying the foundation for stats.
 
 - [x] 4.1 SQL insert query to quiz_attempt table
 - [x] 4.2 QuizWebsite.Data class, "QuizAttempter" to fire SQL insert
@@ -47,6 +51,7 @@
 - [ ] 4.? Frontend submitted elapsed time message
 
 ### Section 5 - Authentication
+> Jump through Microsoft security hoops.
 
 - [x] 5.1 Add switch auth on in Program.cs
 - [x] 5.2 Add configuration to appsettings.json
@@ -57,6 +62,7 @@
 - [x] 5.7 Controller wireup to authentication sign out
 
 ### Section 6 - Basic Account Features
+> Everyone liked that.
 
 - [x] 6.1 Webpage and view model for user sign up
 - [x] 6.2 Data layer queries for creating a new user
@@ -67,31 +73,62 @@
 - [x] 6.7 Refactor layouts for authenticated user vs anon user
 
 ### Section 7 - Stats
+> Metrics for e-peen size.
 
 - [x] 7.1 Display user's personal stats
-- [x] 7.1a Time spent in quizzes overall
-- [x] 7.1b Average quiz score
-- [x] 7.1c Average questions correct
-- [x] 7.1d Latest quiz taken
-- [x] 7.2a Display global stats for overall score after quiz completion
-- [x] 7.2b Display global stats for each question after quiz completion
+  - [x] 7.1a Time spent in quizzes overall
+  - [x] 7.1b Average quiz score
+  - [x] 7.1c Average questions correct
+  - [x] 7.1d Latest quiz taken
+- [x] 7.2 Display quiz stats after completion
+  - [x] 7.2a Display global stats for overall score after quiz completion
+  - [x] 7.2b Display global stats for each question after quiz completion
 - [x] 7.3 Display stats in quiz portal (i.e., Number of completions)
 
 ### Section 8 - Admins
+> Build more muscle memory for the dev stack.
 
 - [x] 8.0 Create Admin role
 - [x] 8.1 Create view to see all users
-- [x] 8.1a Make a sweet username search filter for user table
+  - [x] 8.1a Make a sweet username search filter for user table
 - [x] 8.2 Create view to edit user
 - [x] 8.3 Data layer queries to view/edit users
 - [x] 8.4 Wire up privileged user edit modal "save changes" button
 - [x] 8.5 Lock down admin pages
 
-### Section 9 - Final Boss
+### Section 9 - Software Maintenance
+> "We'll do that later" is now.
 
-- [ ] 9.1 Create quiz editing view
-- [ ] 9.2 Data layer queries for creating a new quiz
-- [ ] 9.3 Create view to look at all of a users quizzes
+- [ ] 9.0 Make JavaScript page-specific
+  - [ ] 9.0a Create separate .js files for admin, quiz, and site-wide
+  - [ ] 9.0b Frontend pages should only reference the files they need
+  - [ ] 9.0c Use minified .js files
+  - [ ] 9.0d Create JavaScript namespace for Quiz Website functionality
+- [ ] 9.1 Refactor MVC
+  - [ ] 9.1a Come up with new sub-namespaces under Models, Views, and Controllers folders
+  - [ ] 9.1b Update references
+  - [ ] 9.1c Update routes
+- [ ] 9.2 Add Service layer to the stack
+  - [ ] 9.2a Move business logic and SqlConnection code into Service layer
+  - [ ] 9.2b Wireup Web and Data layer to new Service layer
+- [ ] 9.3 Nuke unused authentication classes
+
+### Section 10 - Prettify
+> Paint this bitch.
+
+- [ ] 10.0 Update Login page appearance
+- [ ] 10.1 Update Quiz Portal page appearance
+- [ ] 10.2 Update Quiz page appearance
+- [ ] 10.3 Add user messaging system
+- [ ] 10.x Add support for 404 errors
+- [ ] 10.x Add support for 500 errors
+
+### Section 11 - Final Boss
+> An actual engineering problem.
+
+- [ ] 11.1 Create quiz editing view
+- [ ] 11.2 Data layer queries for creating a new quiz
+- [ ] 11.3 Create view to look at all of a users quizzes
 
 ## Future Sections
 
