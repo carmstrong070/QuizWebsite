@@ -1,0 +1,38 @@
+[
+  {
+    "outputFileName": "wwwroot/js/admininater/admininater-add-user.min.js",
+    "inputFiles": [
+      "wwwroot/js/admininater/admininater-add-user.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/admininater/admininater-edit-user.min.js",
+    "inputFiles": [
+      "wwwroot/js/admininater/admininater-edit-user.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/admininater/admininater-portal.min.js",
+    "inputFiles": [
+      "wwwroot/js/admininater/admininater-portal.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/admininater/admininater-table.min.js",
+    "inputFiles": [
+      "wwwroot/js/admininater/admininater-table.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/admininater/admininater-utilities.min.js",
+    "inputFiles": [
+      "wwwroot/js/admininater/admininater-utilities.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/site.min.js",
+    "inputFiles": [
+      "wwwroot/js/site.js"
+    ]
+  }
+]
