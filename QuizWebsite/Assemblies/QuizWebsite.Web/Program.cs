@@ -13,7 +13,7 @@ builder.Services.AddSingleton(configuration); //TODO: See if this works
 // Add services to the container.
 builder.Services.AddControllersWithViews().AddRazorOptions(options =>
 {
-    options.ViewLocationFormats.Add("/Views/{0}" + RazorViewEngine.ViewExtension);
+    options.AreaViewLocationFormats.Add("/Views/{2}/{0}" + RazorViewEngine.ViewExtension);
 });
 
 //-- Turn on Auth
@@ -47,6 +47,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=QuizPortal}/{action=QuizPortal}/{id?}");
 
 app.Run();

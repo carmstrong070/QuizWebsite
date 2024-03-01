@@ -2,12 +2,13 @@
 using Microsoft.AspNetCore.Mvc;
 using QuizWebsite.Data;
 using QuizWebsite.Web.Authentication;
-using QuizWebsite.Web.Models;
+using QuizWebsite.Web.Models.Admin;
 using System.Text;
 
-namespace QuizWebsite.Web.Controllers
+namespace QuizWebsite.Web.Controllers.Admin
 {
     [Authorize(Roles = UserManager.IsAdmininaterRole)]
+    [Area("Admin")]
     public class AdmininaterController : AuthenticatedControllerBase
     {
         public AdmininaterController(IUserManager authUserManager) : base(authUserManager) { }

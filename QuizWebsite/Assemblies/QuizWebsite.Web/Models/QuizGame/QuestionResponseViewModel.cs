@@ -1,4 +1,4 @@
-﻿namespace QuizWebsite.Pages
+﻿namespace QuizWebsite.Web.Models.QuizGame
 {
     public class QuestionResponseViewModel
     {

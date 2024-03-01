@@ -1,16 +1,18 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using QuizWebsite.Data;
 using QuizWebsite.Web.Authentication;
-using QuizWebsite.Web.Models;
+using QuizWebsite.Web.Models.Account;
 using System.Text;
 
-namespace QuizWebsite.Web.Controllers
+namespace QuizWebsite.Web.Controllers.Account
 {
+    [Area("Account")]
     public class UserDetailsController : AuthenticatedControllerBase
     {
         public UserDetailsController(IUserManager authUserManager) : base(authUserManager) { }
 
         [HttpGet]
+        [Route("Account/Edit")]
         public IActionResult Edit()
         {
             var user = UserHandler.GetUserById(UserId.Value);
@@ -21,6 +23,7 @@ namespace QuizWebsite.Web.Controllers
         }
 
         [HttpPost]
+        [Route("Account/Edit")]
         public IActionResult Edit(UserDetailsViewModel vm)
         {
             if (string.IsNullOrWhiteSpace(vm.Email) || string.IsNullOrWhiteSpace(vm.Username))

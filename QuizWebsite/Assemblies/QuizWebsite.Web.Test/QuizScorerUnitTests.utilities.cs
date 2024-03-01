@@ -1,6 +1,6 @@
 using QuizWebsite.Core.Models;
-using QuizWebsite.Pages;
-using static QuizWebsite.Pages.QuestionResponseViewModel;
+using QuizWebsite.Web.Models.Quiz;
+using static QuizWebsite.Web.Models.Quiz.QuestionResponseViewModel;
 
 namespace QuizWebsite.Web.Test
 {

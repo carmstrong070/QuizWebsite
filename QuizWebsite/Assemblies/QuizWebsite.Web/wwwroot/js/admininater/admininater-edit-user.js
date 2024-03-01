@@ -1,6 +1,6 @@
 //import searchUser from "./admininater-utilities"
-
-function saveUserChanges(id) {
+(function (admininater, $, undefined) {
+admininater.saveUserChanges = function(id) {
     let params = {
         id: id,
         username: document.getElementById("edit-username").value,
@@ -14,11 +14,11 @@ function saveUserChanges(id) {
         data: params,
         success: function (data, textStatus, jqXHR) {
             if (data) {
-                searchUser()
+                admininater.searchUser()
                 $("#edit-user-modal").modal("hide");
             }
             else {
-                searchUser()
+                admininater.searchUser()
                 $("#edit-user-modal").modal("hide");
                 alert("Save did not work")
             }
@@ -26,4 +26,5 @@ function saveUserChanges(id) {
         error: function (jqXHR, textStatus, errorThrown) {
         }
     });
-}
+    }
+}(window.admininater = window.admininater || {}, jQuery));

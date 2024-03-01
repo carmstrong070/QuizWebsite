@@ -32,78 +32,6 @@ namespace QuizWebsite.Web.Authentication
             return new SignUpResult(user);
         }
 
-        //public void AddToRole(User user, string roleCode)
-        //{
-        //    Role role = this.storage.Roles.FirstOrDefault(r => r.Code.ToLower() == roleCode.ToLower());
-
-        //    if (role == null)
-        //        return;
-
-        //    this.AddToRole(user, role);
-        //}
-
-        //public void AddToRole(User user, Role role)
-        //{
-        //    UserRole userRole = this.storage.UserRoles.Find(user.Id, role.Id);
-
-        //    if (userRole != null)
-        //        return;
-
-        //    userRole = new UserRole();
-        //    userRole.UserId = user.Id;
-        //    userRole.RoleId = role.Id;
-        //    this.storage.UserRoles.Add(userRole);
-        //    this.storage.SaveChanges();
-        //}
-
-        //public void RemoveFromRole(User user, string roleCode)
-        //{
-        //    Role role = this.storage.Roles.FirstOrDefault(r => r.Code.ToLower() == roleCode.ToLower());
-
-        //    if (role == null)
-        //        return;
-
-        //    this.RemoveFromRole(user, role);
-        //}
-
-        //public void RemoveFromRole(User user, Role role)
-        //{
-        //    UserRole userRole = this.storage.UserRoles.Find(user.Id, role.Id);
-
-        //    if (userRole == null)
-        //        return;
-
-        //    this.storage.UserRoles.Remove(userRole);
-        //    this.storage.SaveChanges();
-        //}
-
-        //public ChangeSecretResult ChangeSecret(string credentialTypeCode, string identifier, string secret)
-        //{
-        //    CredentialType credentialType = this.storage.CredentialTypes.FirstOrDefault(ct => ct.Code.ToLower() == credentialTypeCode.ToLower());
-
-        //    if (credentialType == null)
-        //        return new ChangeSecretResult(success: false, error: ChangeSecretResultError.CredentialTypeNotFound);
-
-        //    Credential credential = this.storage.Credentials.FirstOrDefault(c => c.CredentialTypeId == credentialType.Id && c.Identifier == identifier);
-
-        //    if (credential == null)
-        //        return new ChangeSecretResult(success: false, error: ChangeSecretResultError.CredentialNotFound);
-
-        //    byte[] salt = PasswordHasher.GenerateRandomSalt();
-        //    string hash = PasswordHasher.ComputeHash(secret, salt);
-
-        //    credential.PasswordHash = hash;
-        //    credential.PasswordSalt = Convert.ToBase64String(salt);
-        //    this.storage.Credentials.Update(credential);
-        //    this.storage.SaveChanges();
-        //    return new ChangeSecretResult(success: true);
-        //}
-
-        //public ValidateResult Validate(string credentialTypeCode, string identifier)
-        //{
-        //    return this.Validate(credentialTypeCode, identifier, null);
-        //}
-
         public ValidateResult Validate(string email, string password)
         {
             if (email != null)
@@ -199,42 +127,5 @@ namespace QuizWebsite.Web.Authentication
 
             return claims;
         }
-
-        //private IEnumerable<Claim> GetUserRoleClaims(UserAuthenticationModel user)
-        //{
-        //    List<Claim> claims = new List<Claim>();
-        //    IEnumerable<int> roleIds = this.storage.UserRoles.Where(ur => ur.UserId == user.Id).Select(ur => ur.RoleId).ToList();
-
-        //    if (roleIds != null)
-        //    {
-        //        foreach (int roleId in roleIds)
-        //        {
-        //            Role role = this.storage.Roles.Find(roleId);
-
-        //            claims.Add(new Claim(ClaimTypes.Role, role.Code));
-        //            claims.AddRange(this.GetUserPermissionClaims(role));
-        //        }
-        //    }
-
-        //    return claims;
-        //}
-
-        //private IEnumerable<Claim> GetUserPermissionClaims(Role role)
-        //{
-        //    List<Claim> claims = new List<Claim>();
-        //    IEnumerable<int> permissionIds = this.storage.RolePermissions.Where(rp => rp.RoleId == role.Id).Select(rp => rp.PermissionId).ToList();
-
-        //    if (permissionIds != null)
-        //    {
-        //        foreach (int permissionId in permissionIds)
-        //        {
-        //            Permission permission = this.storage.Permissions.Find(permissionId);
-
-        //            claims.Add(new Claim("Permission", permission.Code));
-        //        }
-        //    }
-
-        //    return claims;
-        //}
     }
 }

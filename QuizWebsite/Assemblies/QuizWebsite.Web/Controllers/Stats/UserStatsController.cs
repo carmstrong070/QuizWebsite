@@ -1,15 +1,17 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using QuizWebsite.Data;
 using QuizWebsite.Web.Authentication;
-using QuizWebsite.Web.Models;
+using QuizWebsite.Web.Models.Stats;
 
-namespace QuizWebsite.Web.Controllers
+namespace QuizWebsite.Web.Controllers.Stats
 {
+    [Area("Stats")]
     public class UserStatsController : AuthenticatedControllerBase
     {
         public UserStatsController(IUserManager authUserManager) : base(authUserManager) { }
 
         [HttpGet]
+        [Route("Stats")]
         public IActionResult UserStats()
         {
             var userStatsViewModel = new UserStatsViewModel();

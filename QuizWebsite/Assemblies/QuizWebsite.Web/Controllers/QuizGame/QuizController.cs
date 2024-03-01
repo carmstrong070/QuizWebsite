@@ -3,12 +3,13 @@ using Microsoft.AspNetCore.Mvc;
 using QuizWebsite.Core.Models;
 using QuizWebsite.Data;
 using QuizWebsite.Web.Authentication;
-using QuizWebsite.Web.Models;
+using QuizWebsite.Web.Models.QuizGame;
 using QuizWebsite.Web.Utilities;
 
 
-namespace QuizWebsite.Web.Controllers
+namespace QuizWebsite.Web.Controllers.QuizGame
 {
+    [Area("QuizGame")]
     public class QuizController : AuthenticatedControllerBase
     {
         public QuizController(IUserManager authUserManager) : base(authUserManager) { }

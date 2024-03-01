@@ -1,4 +1,5 @@
-function searchUser() {
+(function (admininater, $, undefined) {
+admininater.searchUser = function() {
     let params = { searchedUser: document.getElementById("txtSearch").value };
     $.ajax({
         url: "/UpdateTable",
@@ -12,4 +13,5 @@ function searchUser() {
 
         }
     });
-}
+    }
+}(window.admininater = window.admininater || {}, jQuery));

@@ -111,16 +111,37 @@
 - [x] 9.0 Make JavaScript page-specific
   - [x] 9.0a Create separate .js files for admin, quiz, and site-wide
   - [x] 9.0b Frontend pages should only reference the files they need
-  - [ ] 9.0c Use minified .js files
+  - [x] 9.0c Use minified .js files
   - [ ] 9.0d Create JavaScript namespace for Quiz Website functionality
-- [ ] 9.1 Refactor MVC
-  - [ ] 9.1a Come up with new sub-namespaces under Models, Views, and Controllers folders
-  - [ ] 9.1b Update references
-  - [ ] 9.1c Update routes
+- [x] 9.1 Refactor MVC
+  - [x] 9.1a Come up with new sub-namespaces under Models, Views, and Controllers folders
+  - [x] 9.1b Update references
+  - [x] 9.1c Update routes
 - [ ] 9.2 Add Service layer to the stack
+
   - [ ] 9.2a Move business logic and SqlConnection code into Service layer
   - [ ] 9.2b Wireup Web and Data layer to new Service layer
-- [ ] 9.3 Nuke unused authentication classes
+  - [ ] 9.2c Refactor Controller, UserManager, and UserHandler interactions
+
+  ```
+  CURRENT
+
+    Create
+    Web AdmininaterController -> Web Auth UserManager (Bus Logic) -> Data UserHandler
+
+    Edit
+    Web AdmininaterController (Bus Logic) -> Data UserHandler
+  TARGET
+
+    Create/Edit
+    Web AdmininaterController -> Service (Bus Logic) -> Data UserHandler
+    Web SignUpController -> Service (Bus Logic) -> Data UserHandler
+
+    Sign In (No sign up, no edit)
+    Web WhateverController -> Web Auth UserManager -> Service (Bus Logic) -> Data UserHandler
+  ```
+
+- [x] 9.3 Nuke unused authentication classes
 
 ### Section 10 - Prettify
 

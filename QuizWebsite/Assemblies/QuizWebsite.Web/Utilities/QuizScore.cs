@@ -1,5 +1,5 @@
 ﻿using QuizWebsite.Core.Models;
-using QuizWebsite.Pages;
+using QuizWebsite.Web.Models.QuizGame;
 
 namespace QuizWebsite.Web.Utilities
 {

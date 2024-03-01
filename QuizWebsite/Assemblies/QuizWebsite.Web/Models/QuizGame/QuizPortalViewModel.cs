@@ -1,6 +1,6 @@
 ﻿using QuizWebsite.Core.Models;
 
-namespace QuizWebsite.Web.Models
+namespace QuizWebsite.Web.Models.QuizGame
 {
     public class QuizPortalViewModel
     {

@@ -1,9 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using QuizWebsite.Data;
-using QuizWebsite.Web.Models;
+using QuizWebsite.Web.Models.QuizGame;
 
-namespace QuizWebsite.Web.Controllers
+namespace QuizWebsite.Web.Controllers.QuizGame
 {
+    [Area("QuizGame")]
     public class QuizPortalController : Controller
     {
         [HttpGet]

@@ -1,4 +1,4 @@
-﻿namespace QuizWebsite.Web.Models
+﻿namespace QuizWebsite.Web.Models.Account
 {
     public class SignUpViewModel
     {

@@ -1,33 +1,33 @@
 ﻿<div class="navbar-collapse collapse d-sm-inline-flex justify-content-between ">
     <ul class="navbar-nav flex-grow-1">
         <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="" asp-controller="QuizPortal" asp-action="QuizPortal">QuizPortal</a>
+            <a class="nav-link text-dark" asp-area="QuizGame" asp-controller="QuizPortal" asp-action="QuizPortal">QuizPortal</a>
         </li>
         @if (this.User.Identity.IsAuthenticated)
         {
             <li class="nav-item">
-                <a class="nav-link text-dark" asp-area="" asp-controller="UserDetails" asp-action="Edit">Edit Account</a>
+                <a class="nav-link text-dark" asp-area="Account" asp-controller="UserDetails" asp-action="Edit">Edit Account</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-dark" asp-area="" asp-controller="LogOut" asp-action="LogOut">Log Out</a>
+                <a class="nav-link text-dark" asp-area="Account" asp-controller="LogOut" asp-action="LogOut">Log Out</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-dark" asp-area="" asp-controller="UserStats" asp-action="UserStats">User Stats</a>
+                <a class="nav-link text-dark" asp-area="Stats" asp-controller="UserStats" asp-action="UserStats">User Stats</a>
             </li>
             @if (this.User.IsAdmininater())
             {
                 <li class="nav-item">
-                    <a class="nav-link text-dark" asp-area="" asp-controller="Admininater" asp-action="AdmininaterPortal">Admininater Portal</a>
+                    <a class="nav-link text-dark" asp-area="Admin" asp-controller="Admininater" asp-action="AdmininaterPortal">Admininater Portal</a>
                 </li>
             }
         }
         else
         {
             <li class="nav-item">
-                <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="Login">Login</a>
+                <a class="nav-link text-dark" asp-area="Account" asp-controller="Login" asp-action="Login">Login</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-dark" asp-area="" asp-controller="SignUp" asp-action="SignUp">Sign Up</a>
+                <a class="nav-link text-dark" asp-area="Account" asp-controller="SignUp" asp-action="SignUp">Sign Up</a>
             </li>
         }
     </ul>

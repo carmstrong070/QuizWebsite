@@ -1,6 +1,6 @@
 //import searchUser from "./admininater-utilities"
-
-function selectUser(id) {
+(function (admininater, $, undefined) {
+admininater.selectUser = function(id) {
     let params = { id: id };
     $.ajax({
         url: "/SelectUser",
@@ -17,7 +17,7 @@ function selectUser(id) {
     });
 }
 
-function banUser(id) {
+    admininater.banUser = function(id) {
     let params = {
         id: id
     };
@@ -27,14 +27,14 @@ function banUser(id) {
         dataType: "html",
         data: params,
         success: function (data, textStatus, jqXHR) {
-            searchUser()
+            admininater.searchUser()
         },
         error: function (jqXHR, textStatus, errorThrown) {
         }
     });
 }
 
-function unbanUser(id) {
+admininater.unbanUser = function(id) {
     let params = {
         id: id
     };
@@ -44,9 +44,10 @@ function unbanUser(id) {
         dataType: "html",
         data: params,
         success: function (data, textStatus, jqXHR) {
-            searchUser()
+            admininater.searchUser()
         },
         error: function (jqXHR, textStatus, errorThrown) {
         }
     });
 }
+}(window.admininater = window.admininater || {}, jQuery));

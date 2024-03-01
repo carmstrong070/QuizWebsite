@@ -1,6 +1,6 @@
 //import searchUser from "./admininater-utilities"
-
-function createNewUser() {
+(function (admininater, $, undefined) {
+admininater.createNewUser = function() {
     let params = {
         username: document.getElementById("new-username").value,
         email: document.getElementById("new-email").value,
@@ -14,11 +14,11 @@ function createNewUser() {
         data: params,
         success: function (data, textStatus, jqXHR) {
             if (data) {
-                searchUser()
+                admininater.searchUser()
                 $("#add-user-modal").modal("hide");
             }
             else {
-                searchUser()
+                admininater.searchUser()
                 $("#add-user-modal").modal("hide");
                 alert("Save did not work")
             }
@@ -26,5 +26,6 @@ function createNewUser() {
         error: function (jqXHR, textStatus, errorThrown) {
         }
     });
-}
+    }
+}(window.admininater = window.admininater || {}, jQuery));
 
